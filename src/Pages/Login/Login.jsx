@@ -1,14 +1,26 @@
+import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const {userSignIn}=useAuth()
+    const navigate=useNavigate()
     const handleLogin=e=>{
         e.preventDefault()
         const email=e.target.email.value;
         const password=e.target.password.value;
         userSignIn(email,password)
-        .then(res=>console.log(res))
+        .then(res=>{
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User login successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/')
+        })
         .catch(err=>{
             console.log(err.message)
         })
@@ -45,6 +57,7 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <div className="divider divider-primary">OR</div>
                         <div>
                             <SocialLogin></SocialLogin>
                         </div>

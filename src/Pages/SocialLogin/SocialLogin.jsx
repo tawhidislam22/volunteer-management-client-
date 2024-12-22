@@ -1,21 +1,38 @@
+import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 
 
 const SocialLogin = () => {
-    const {signInWithGoogle,signInWithGithub}=useAuth()
-    const handleSignInGoogle=()=>{
+    const { signInWithGoogle, signInWithGithub } = useAuth()
+    const handleSignInGoogle = () => {
         signInWithGoogle()
-        .then(res=>console.log(res))
-        .catch(err=>{
-            console.log(err.message)
-        })
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User login successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
     }
-    const handleSignInGithub=()=>{
+    const handleSignInGithub = () => {
         signInWithGithub()
-        .then(res=>{
-            console.log(res)
-        })
-        .then(err=>console.log(err.message))
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User login successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            })
+            .then(err => console.log(err.message))
     }
     return (
         <div className="flex flex-col gap-4">
