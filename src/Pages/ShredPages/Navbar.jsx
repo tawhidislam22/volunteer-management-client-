@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-
+import icons from "../../assets/icons/icons.png"
 const Navbar = () => {
     const {signOutUser}=useAuth()
     const links=<>
@@ -50,7 +50,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl"><img className='w-12' src={icons} alt="" /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
