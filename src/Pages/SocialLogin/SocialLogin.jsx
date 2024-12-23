@@ -1,9 +1,11 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
     const { signInWithGoogle, signInWithGithub } = useAuth()
+    const navigate=useNavigate()
     const handleSignInGoogle = () => {
         signInWithGoogle()
             .then(res => {

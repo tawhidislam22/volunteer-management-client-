@@ -18,7 +18,7 @@ const Banner = () => {
 
     return (
         <div className=" bg-banner-Image bg-cover bg-center">
-            <div className="   bg-black bg-opacity-50">
+            <div className="   bg-black bg-opacity-75">
                 <Slider {...settings}>
                     <div className=" w-full flex items-center justify-center">
                         <div className="hero  min-h-screen">
