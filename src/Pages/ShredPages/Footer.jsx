@@ -7,7 +7,7 @@ const Footer = () => {
                 <aside>
                     <img className="w-28" src={icons} alt="" />
                     <p>
-                        ACME Industries Ltd.
+                    VolunSphere Ltd.
                         <br />
                         Providing reliable tech since 1992
                     </p>

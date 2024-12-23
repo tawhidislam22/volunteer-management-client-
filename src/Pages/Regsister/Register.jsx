@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
-
+import registerLottie from '../../assets/lottieFile/register.json'
+import Lottie from "lottie-react";
 const Register = () => {
     const { createUser } = useAuth()
     const handleRegister = e => {
@@ -28,10 +29,10 @@ const Register = () => {
         <div className="w-full bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
             <div className="hero  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-
+                    <div className="text-center lg:text-left w-[600px]">
+                        <Lottie animationData={registerLottie}></Lottie>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                    <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
                         <h1 className="text-5xl font-bold mx-auto">Register now!</h1>
 
                         <form onSubmit={handleRegister} className="card-body">

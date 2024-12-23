@@ -9,6 +9,7 @@ const Navbar = () => {
     <NavLink className='btn mr-3' to='/'><li>Home</li></NavLink>
     <NavLink className='btn mr-3' to='/login'><li>LogIn</li></NavLink>
     <NavLink className='btn mr-3' to='/register'><li>Register</li></NavLink>
+    <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
     
 
     </>
@@ -50,7 +51,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><img className='w-12' src={icons} alt="" /></a>
+                <a className="btn btn-ghost text-xl"><img className='w-12' src={icons} alt="" /> VolunSphere</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

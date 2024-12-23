@@ -6,6 +6,7 @@ import MainLayout from "../MainLayout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Regsister/Register";
+import AddVolunteerPost from "../Pages/AddVolunteerPost/AddVolunteerPost";
 
  const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ import Register from "../Pages/Regsister/Register";
         {
           path:'/register',
           element:<Register></Register>
+        },
+        {
+          path:'/addVolunteerPost',
+          element:<AddVolunteerPost></AddVolunteerPost>
         }
       ]
     },
