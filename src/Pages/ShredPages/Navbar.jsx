@@ -10,6 +10,7 @@ const Navbar = () => {
     <NavLink className='btn mr-3' to='/login'><li>LogIn</li></NavLink>
     <NavLink className='btn mr-3' to='/register'><li>Register</li></NavLink>
     <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
+    <NavLink className='btn mr-3' to='/myPosts'><li>My Posts</li></NavLink>
     <NavLink className='btn mr-3' to='/myRequests'><li>My Requests</li></NavLink>
     <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
     

@@ -11,6 +11,8 @@ import VolunteerPostDetails from "../Pages/VolunteerPostDetails/VolunteerPostDet
 
 import AllVoluteerNeedPosts from "../Pages/AllVoluteerNeedPosts/AllVoluteerNeedPosts";
 import MyRequests from "../Pages/MyRequests/MyRequests";
+import MyPosts from "../Pages/MyPosts/MyPosts";
+import EditPost from "../Pages/MyPosts/EditPost";
 
  const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ import MyRequests from "../Pages/MyRequests/MyRequests";
           path:'/postDetails/:id',
           element:<VolunteerPostDetails></VolunteerPostDetails>,
           loader:({params})=>fetch(`http://localhost:5000/volunteers/${params.id}`)
+        },
+        {
+          path:'/myPosts',
+          element:<MyPosts></MyPosts>
+        },
+        {
+          path:'/myPosts/edit/:id',
+          element:<EditPost></EditPost>
         },
         {
           path:'/myRequests',
