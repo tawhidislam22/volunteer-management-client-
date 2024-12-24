@@ -2,7 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannerImage1 from "../../assets/BannerImage/bannerImage1.png"
+import { easeInOut, motion } from "motion/react"
+import bannerImage1 from "../../assets/BannerImage/bannerImage1.jpg"
 import bannerImage2 from "../../assets/BannerImage/bannerImage2.jpg"
 import bannerImage3 from "../../assets/BannerImage/bannerImage3.jpg"
 const Banner = () => {
@@ -17,8 +18,8 @@ const Banner = () => {
     };
 
     return (
-        <div className=" bg-banner-Image bg-cover bg-center">
-            <div className="   bg-black bg-opacity-75">
+        <div className="max-w-6xl mx-auto">
+            <div className="">
                 <Slider {...settings}>
                     <div className=" w-full flex items-center justify-center">
                         <div className="hero  min-h-screen">
@@ -27,12 +28,11 @@ const Banner = () => {
                                     src={bannerImage1}
                                     className="max-w-sm rounded-lg shadow-2xl" />
                                 <div>
-                                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                    <p className="py-6">
-                                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                                    <h1 className="text-5xl font-bold text-blue-400">Join Hands to Make a Difference – Explore Volunteer Opportunities Near You!</h1>
+                                    <p className="py-6 text-gray-200">
+                                    Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Get Started</button>
+                                    <button className="btn btn-primary">Explore More</button>
                                 </div>
                             </div>
                         </div>
@@ -44,12 +44,11 @@ const Banner = () => {
                                     src={bannerImage2}
                                     className="max-w-sm rounded-lg shadow-2xl" />
                                 <div>
-                                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                    <p className="py-6">
-                                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                                    <h1 className="text-5xl font-bold  text-blue-400">Join Hands to Make a Difference – Explore Volunteer Opportunities Near You!</h1>
+                                    <p className="py-6 text-gray-200">
+                                    Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Get Started</button>
+                                    <button className="btn btn-primary">Explore More</button>
                                 </div>
                             </div>
                         </div>
@@ -61,12 +60,11 @@ const Banner = () => {
                                     src={bannerImage3}
                                     className="max-w-sm rounded-lg shadow-2xl" />
                                 <div>
-                                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                    <p className="py-6">
-                                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                                    <h1 className="text-5xl font-bold  text-blue-400">Join Hands to Make a Difference – Explore Volunteer Opportunities Near You!</h1>
+                                    <p className="py-6 text-gray-200">
+                                    Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Get Started</button>
+                                    <button className="btn btn-primary">Explore More</button>
                                 </div>
                             </div>
                         </div>

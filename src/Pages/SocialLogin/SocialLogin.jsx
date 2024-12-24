@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import googleIcon from '../../assets/icons/google.png'
+import githubIcon from '../../assets/icons/github.png'
 
 const SocialLogin = () => {
     const { signInWithGoogle, signInWithGithub } = useAuth()
@@ -10,7 +11,7 @@ const SocialLogin = () => {
         signInWithGoogle()
             .then(res => {
                 Swal.fire({
-                    position: "top-end",
+                    
                     icon: "success",
                     title: "User login successfully",
                     showConfirmButton: false,
@@ -26,7 +27,7 @@ const SocialLogin = () => {
         signInWithGithub()
             .then(res => {
                 Swal.fire({
-                    position: "top-end",
+                    
                     icon: "success",
                     title: "User login successfully",
                     showConfirmButton: false,
@@ -37,9 +38,16 @@ const SocialLogin = () => {
             .then(err => console.log(err.message))
     }
     return (
-        <div className="flex flex-col gap-4">
-            <button onClick={handleSignInGoogle}>Sign in Google</button>
-            <button onClick={handleSignInGithub}>Sign in Github</button>
+        <div className="flex flex-col gap-4 pb-4">
+            <div className="btn flex gap-6">
+             <img className="w-10" src={googleIcon} alt="" />   
+            <button className="text-xl font-semibold" onClick={handleSignInGoogle}>Sign in Google</button>
+            </div>
+            <div className="btn flex gap-6">
+             <img className="w-10" src={githubIcon} alt="" />   
+             <button className="text-xl font-semibold" onClick={handleSignInGithub}>Sign in Github</button>
+            </div>
+            
         </div>
     );
 };

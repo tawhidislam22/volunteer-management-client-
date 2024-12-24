@@ -1,34 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import icons from "../../assets/icons/icons.png"
 const Navbar = () => {
-    const {signOutUser}=useAuth()
-    const links=<>
-    <NavLink className='btn mr-3' to='/'><li>Home</li></NavLink>
-    <NavLink className='btn mr-3' to='/login'><li>LogIn</li></NavLink>
-    <NavLink className='btn mr-3' to='/register'><li>Register</li></NavLink>
-    <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
-    <NavLink className='btn mr-3' to='/myPosts'><li>My Posts</li></NavLink>
-    <NavLink className='btn mr-3' to='/myRequests'><li>My Requests</li></NavLink>
-    <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
-    
+    const { signOutUser, user } = useAuth()
+    const navigate=useNavigate()
+    const links = <>
+        <NavLink className='btn mr-3' to='/'><li>Home</li></NavLink>
+        {
+            user ? <div>
+                <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
+                
+                <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
+            </div> : <div>
+            </div>
+        }
+
+
 
     </>
-    const handleSignout=()=>{
+    const handleSignout = () => {
         signOutUser()
-        .then(res=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User signout successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/')
-        })
-        .catch(err=>console.log(err.message))
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User signout successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            })
+            .catch(err => console.log(err.message))
     }
     return (
         <div className="navbar bg-base-100">
@@ -62,7 +66,30 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button onClick={handleSignout} className='btn'>signout</button>
+                {
+                    user ? <>
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                <NavLink className='btn mr-3' to='/myPosts'><li>My Posts</li></NavLink>
+                                <NavLink className='btn mr-3' to='/myRequests'><li>My Requests</li></NavLink>
+                            </ul>
+                        </div>
+                        <button onClick={handleSignout} className='btn'>signout</button>
+                    </> : <>
+                        <NavLink className='btn mr-3' to='/login'>LogIn</NavLink>
+                        <NavLink className='btn mr-3' to='/register'>Register</NavLink>
+                    </>
+                }
+
             </div>
         </div>
     );

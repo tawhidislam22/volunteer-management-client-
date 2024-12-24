@@ -4,9 +4,16 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import { useNavigate } from "react-router-dom";
 import loginLottie from '../../assets/lottieFile/login.json'
 import Lottie from "lottie-react";
+import auth from "../../Firebase/Firebase.init";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useRef, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
     const {userSignIn}=useAuth()
     const navigate=useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
+    const emailRef = useRef()
     const handleLogin=e=>{
         e.preventDefault()
         const email=e.target.email.value;
@@ -28,34 +35,76 @@ const Login = () => {
 
 
     }
+    const handleForgetPassword = () => {
+        const email = emailRef.current.value;
+        if (!email) {
+            toast.error('Please provide your email', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+            
+        }
+        else {
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    toast.error('password reset email send', {
+                        position: "top-center",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+
+                    });
+
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
+        }
+    }
     return (
         <div className="w-full bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
-            <div className="hero  min-h-screen">
+            <div className="hero p-4  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         
                         <Lottie animationData={loginLottie}></Lottie>
                     </div>
                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-                    <h1 className="mx-auto text-5xl font-bold">Login now!</h1>
+                    <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Login now!</h1>
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
+                                <label className="label ">
+                                    <span className="label-text text-xl font-medium">Email</span>
                                 </label>
-                                <input name="email" type="email" placeholder="email" className="input input-bordered" required />
+                                <input name="email" ref={emailRef} type="email" placeholder="email" className="input input-bordered" required />
                             </div>
-                            <div className="form-control">
+                            <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-xl font-medium">Password</span>
                                 </label>
-                                <input name="password" type="password" placeholder="password" className="input input-bordered" required />
+                                <input name="password" type={showPassword ? 'text' : 'password'} placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" onClick={handleForgetPassword} className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
+                                <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs text-xl absolute right-2 top-14">
+                                {
+                                    showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                }
+                            </button>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn  text-gray-900  text-xl font-medium  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">Login</button>
                             </div>
                         </form>
                         <div className="divider divider-primary">OR</div>
