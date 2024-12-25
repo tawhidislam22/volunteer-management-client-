@@ -135,7 +135,7 @@ const EditPost = () => {
                             <label className="label">
                                 <span className="label-text text-xl font-medium">Organizer name</span>
                             </label>
-                            <input name='organizerName' value={user?.name} type="text" placeholder="Organizer name" className="input input-bordered" required />
+                            <input name='organizerName' value={user?.displayName} type="text" placeholder="Organizer name" className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control w-1/2">
