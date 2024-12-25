@@ -7,31 +7,24 @@ import Swal from 'sweetalert2';
 
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
+import { ColorRing } from 'react-loader-spinner';
 
 
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
     const { user } = useAuth()
-    let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [loading, setLoading] = useState(true)
 
-    function openModal() {
-        setIsOpen(true);
-    }
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = '#f00';
-    }
 
-    function closeModal() {
-        setIsOpen(false);
-    }
+
+
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/volunteers?email=alice@example.com`)
+        axios.get(`http://localhost:5000/volunteers?email=${user?.email}`)
             .then(res => {
-                setPosts(res.data)
+                setLoading(false)
+                setPosts(res.data.posts)
             })
             .catch(err => {
                 console.log(err.message)
@@ -69,7 +62,21 @@ const MyPosts = () => {
 
     };
 
-    
+    if (loading) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                />
+            </div>
+        )
+    }
 
 
     return (
@@ -96,15 +103,15 @@ const MyPosts = () => {
                                 <td className="border border-gray-300 px-4 py-2">{new Date(post.deadline).toLocaleDateString()}</td>
                                 <td className="border border-gray-300 px-4 py-2">{post.location}</td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                   
-                                        <Link to={`/myPosts/edit/${post._id}`}>
+
+                                    <Link to={`/myPosts/edit/${post._id}`}>
                                         <button
                                             className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
                                         >
                                             Edit
                                         </button>
-                                        </Link>
-                                    
+                                    </Link>
+
                                     <button
                                         onClick={() => handleDelete(post._id)}
                                         className="bg-red-500 text-white px-4 py-2 rounded"

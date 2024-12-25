@@ -13,6 +13,7 @@ import AllVoluteerNeedPosts from "../Pages/AllVoluteerNeedPosts/AllVoluteerNeedP
 import MyRequests from "../Pages/MyRequests/MyRequests";
 import MyPosts from "../Pages/MyPosts/MyPosts";
 import EditPost from "../Pages/MyPosts/EditPost";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 
  const router = createBrowserRouter([
     {
@@ -38,24 +39,24 @@ import EditPost from "../Pages/MyPosts/EditPost";
         },
         {
           path:'/addVolunteerPost',
-          element:<AddVolunteerPost></AddVolunteerPost>
+          element:<PrivateRoute><AddVolunteerPost></AddVolunteerPost></PrivateRoute>
         },
         {
           path:'/postDetails/:id',
-          element:<VolunteerPostDetails></VolunteerPostDetails>,
+          element:<PrivateRoute><VolunteerPostDetails></VolunteerPostDetails></PrivateRoute>,
           loader:({params})=>fetch(`http://localhost:5000/volunteers/${params.id}`)
         },
         {
           path:'/myPosts',
-          element:<MyPosts></MyPosts>
+          element:<PrivateRoute><MyPosts></MyPosts></PrivateRoute>
         },
         {
           path:'/myPosts/edit/:id',
-          element:<EditPost></EditPost>
+          element:<PrivateRoute><EditPost></EditPost></PrivateRoute>
         },
         {
           path:'/myRequests',
-          element:<MyRequests></MyRequests>
+          element:<PrivateRoute><MyRequests></MyRequests></PrivateRoute>
         }
         
       ]

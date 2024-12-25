@@ -8,9 +8,10 @@ const Navbar = () => {
     const navigate=useNavigate()
     const links = <>
         <NavLink className='btn mr-3' to='/'><li>Home</li></NavLink>
+        <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
         {
             user ? <div>
-                <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
+                
                 
                 <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
             </div> : <div>

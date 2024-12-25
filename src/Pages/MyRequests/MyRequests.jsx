@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import {  ColorRing } from 'react-loader-spinner'
 
 const MyRequests = () => {
     const [requests, setRequests] = useState([]);
     const { user } = useAuth()
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
 
         axios.get(`http://localhost:5000/requestVolunteers?email=${user?.email}`)
             .then(res => {
+                setLoading(false)
                 setRequests(res.data);
+
             })
 
             .catch(err => {
@@ -49,6 +52,21 @@ const MyRequests = () => {
             }
         });
     };
+    if (loading) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <ColorRing
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                />
+            </div>
+        )
+    }
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">My Volunteer Requests</h1>
