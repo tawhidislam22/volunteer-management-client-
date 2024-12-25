@@ -6,29 +6,33 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
     const { user } = useAuth()
     const [loading, setLoading] = useState(true)
-
+    const axiosSecure=useAxiosSecure()
 
 
 
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/volunteers/email?email=${user?.email}`,{withCredentials:true})
+        // axios.get(`http://localhost:5000/volunteers/email?email=${user?.email}`,{withCredentials:true})
+        //     .then(res => {
+        //         setLoading(false)
+        //         setPosts(res.data)
+        //     })
+        //     .catch(err => {
+        //         console.log(err.message)
+        //     })
+            axiosSecure.get(`/volunteers/email?email=${user?.email}`)
             .then(res => {
                 setLoading(false)
                 setPosts(res.data)
             })
-            .catch(err => {
-                console.log(err.message)
-            })
-
-
     }, [user?.email]);
 
     const handleDelete = async (id) => {

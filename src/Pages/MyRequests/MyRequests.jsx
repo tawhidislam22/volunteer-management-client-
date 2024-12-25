@@ -3,25 +3,31 @@ import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {  ColorRing } from 'react-loader-spinner'
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyRequests = () => {
     const [requests, setRequests] = useState([]);
     const { user } = useAuth()
     const [loading, setLoading] = useState(true)
+    const axiosSecure=useAxiosSecure()
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/requestVolunteers?email=${user?.email}`,{withCredentials:true})
-            .then(res => {
-                setLoading(false)
-                setRequests(res.data);
+        // axios.get(`http://localhost:5000/requestVolunteers?email=${user?.email}`,{withCredentials:true})
+        //     .then(res => {
+        //         setLoading(false)
+        //         setRequests(res.data);
 
-            })
+        //     })
 
-            .catch(err => {
-                console.log(err.message)
-            })
-
-
+        //     .catch(err => {
+        //         console.log(err.message)
+        //     })
+            axiosSecure.get(`/requestVolunteers?email=${user?.email}`)
+                .then(res => {
+                    setLoading(false)
+                    setRequests(res.data);
+    
+                })
     }, []);
 
 

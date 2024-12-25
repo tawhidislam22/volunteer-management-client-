@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect } from "react";
-import useAuth from "./UseAuth";
 import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const axiosInstance=axios.create({
-    baseURL:'https://jobs-portal-server-one.vercel.app',
+    baseURL:'http://localhost:5000',
     withCredentials:true
 });
 const useAxiosSecure = () => {
