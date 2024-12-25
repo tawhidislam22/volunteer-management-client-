@@ -14,12 +14,13 @@ import MyRequests from "../Pages/MyRequests/MyRequests";
 import MyPosts from "../Pages/MyPosts/MyPosts";
 import EditPost from "../Pages/MyPosts/EditPost";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
  const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
-      errorElement:<h2>Error Page</h2>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:'/',

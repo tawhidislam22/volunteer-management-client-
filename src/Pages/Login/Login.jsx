@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginLottie from '../../assets/lottieFile/login.json'
 import Lottie from "lottie-react";
 import auth from "../../Firebase/Firebase.init";
@@ -11,7 +11,9 @@ import { useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
     const {userSignIn}=useAuth()
+    const location=useLocation()
     const navigate=useNavigate()
+    const from=location.state || "/"
     const [showPassword, setShowPassword] = useState(false)
     const emailRef = useRef()
     const handleLogin=e=>{
@@ -27,7 +29,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-              navigate('/')
+              navigate(from)
         })
         .catch(err=>{
             console.log(err.message)
@@ -97,7 +99,7 @@ const Login = () => {
                                 <label className="label">
                                     <a href="#" onClick={handleForgetPassword} className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
-                                <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs text-xl absolute right-2 top-14">
+                                <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs text-lg absolute right-2 top-14">
                                 {
                                     showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                                 }

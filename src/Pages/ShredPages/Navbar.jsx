@@ -56,7 +56,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-md">
+        <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-md  dark:bg-gray-900 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -111,7 +111,7 @@ const Navbar = () => {
                             >
                                 <NavLink
                                     className={({ isActive }) =>
-                                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
+                                        `btn mr-3 mb-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
                                     }
                                     to='/myPosts'
                                 >

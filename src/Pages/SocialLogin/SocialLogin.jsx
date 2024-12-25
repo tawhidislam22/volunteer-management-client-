@@ -1,12 +1,14 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import googleIcon from '../../assets/icons/google.png'
 import githubIcon from '../../assets/icons/github.png'
 
 const SocialLogin = () => {
     const { signInWithGoogle, signInWithGithub } = useAuth()
+    const location=useLocation()
     const navigate=useNavigate()
+    const from=location.state || "/"
     const handleSignInGoogle = () => {
         signInWithGoogle()
             .then(res => {
@@ -17,7 +19,7 @@ const SocialLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate(from)
             })
             .catch(err => {
                 console.log(err.message)
@@ -33,7 +35,7 @@ const SocialLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate(from)
             })
             .then(err => console.log(err.message))
     }

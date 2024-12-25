@@ -5,13 +5,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-
+import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from 'react-datepicker';
 const EditPost = () => {
     const { id } = useParams(); // Get the post ID from the URL
     const navigate = useNavigate();
     const [postDetails, setPostDetails] = useState(null);
     const { user } = useAuth()
-
+    const [startDate, setStartDate] = useState(new Date());
     useEffect(() => {
 
         axios.get(`http://localhost:5000/volunteers/${id}`)
@@ -37,7 +38,7 @@ const EditPost = () => {
         const category=form.category.value;
         const location=form.location.value;
         const volunteersNeeded=form.noVolunteer.value;
-        const deadline=form.deadline.value;
+        const deadline=startDate;
         const organizerName=form.organizerName.value;
         const organizerEmail=form.organizerEmail.value;
         const updatedPost={
@@ -67,28 +68,31 @@ const EditPost = () => {
     return (
         <div className='w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500'>
             <div className="p-4 card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
-            <h1 className="text-2xl font-bold mb-4">Edit Volunteer Need Post</h1>
+            <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Edit Volunteer Need Post</h1>
             <form onSubmit={handleFormSubmit} className="card-body">
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Thumbnail</span>
+                        <span className="label-text text-xl font-medium">Thumbnail</span>
                     </label>
                     <input name='thumbnail' defaultValue={postDetails?.thumbnail} type="url" placeholder="Thumbnail" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Post Title</span>
+                        <span className="label-text text-xl font-medium">Post Title</span>
                     </label>
                     <input name="postTitle" defaultValue={postDetails?.title} type="text" placeholder="Post Title" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Description</span>
+                        <span className="label-text text-xl font-medium">Description</span>
                     </label>
                     <input name="description" defaultValue={postDetails?.description} type="textarea" placeholder="Description" className="input input-bordered" required />
                 </div>
                 <div className="flex w-full gap-4">
                     <div className="w-1/2">
+                    <label className="label">
+                        <span className="label-text text-xl font-medium">Category</span>
+                    </label>
                         <select name="category" defaultValue={postDetails?.category} className="select select-info w-full max-w-xs">
                             <option disabled selected>Select your category</option>
                             <option>healthcare</option>
@@ -99,7 +103,7 @@ const EditPost = () => {
                     </div>
                     <div className="form-control w-1/2">
                         <label className="label">
-                            <span className="label-text">Location</span>
+                            <span className="label-text text-xl font-medium">Location</span>
                         </label>
                         <input name="location" defaultValue={postDetails?.location} type="text" placeholder="Location" className="input input-bordered" required />
                     </div>
@@ -108,36 +112,41 @@ const EditPost = () => {
                     <div className="w-1/2">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">No. of volunteers needed </span>
+                                <span className="label-text text-xl font-medium">No. of volunteers needed </span>
                             </label>
                             <input name='noVolunteer' defaultValue={postDetails?.volunteersNeeded} type="number" min={1} placeholder="No. of volunteers needed " className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control w-1/2">
                         <label className="label">
-                            <span className="label-text">Deadline</span>
+                            <span className="label-text text-xl font-medium">Deadline</span>
                         </label>
-                        <input name="deadline" defaultValue={postDetails?.deadline} type="date" placeholder="Deadline" className="input input-bordered" required />
+                        <div className="w-full gap-4 p-2"><DatePicker
+                                showIcon
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                                
+                            /></div>
                     </div>
                 </div>
                 <div className="flex w-full gap-4">
                     <div className="w-1/2">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Organizer name</span>
+                                <span className="label-text text-xl font-medium">Organizer name</span>
                             </label>
                             <input name='organizerName' value={user?.name} type="text" placeholder="Organizer name" className="input input-bordered" required />
                         </div>
                     </div>
                     <div className="form-control w-1/2">
                         <label className="label">
-                            <span className="label-text">Organizer email</span>
+                            <span className="label-text text-xl font-medium">Organizer email</span>
                         </label>
                         <input name="organizerEmail" value={user?.email} type="email" placeholder="organizer email" className="input input-bordered" required />
                     </div>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn bg-gradient-to-bl to-blue-500  from-purple-500">Update Post</button>
+                    <button className="btn text-slate-300 text-lg font-semibold bg-gradient-to-bl to-blue-500  from-purple-500">Update Post</button>
                 </div>
             </form>
         </div>
