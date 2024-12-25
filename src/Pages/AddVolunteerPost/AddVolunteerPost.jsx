@@ -38,7 +38,7 @@ const AddVolunteerPost = () => {
         })
     }
     return (
-        <div className="w-full py-16  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+        <div className="w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
             <div className="card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
                 <h2 className="mx-auto my-4 text-2xl">Add your volunteer need post</h2>
                 <form onSubmit={handleAddVolunteer} className="card-body">

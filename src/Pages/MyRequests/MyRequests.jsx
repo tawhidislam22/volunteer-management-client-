@@ -10,7 +10,7 @@ const MyRequests = () => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/requestVolunteers?email=${user?.email}`)
+        axios.get(`http://localhost:5000/requestVolunteers?email=${user?.email}`,{withCredentials:true})
             .then(res => {
                 setLoading(false)
                 setRequests(res.data);
@@ -68,7 +68,7 @@ const MyRequests = () => {
         )
     }
     return (
-        <div className="p-4">
+        <div className="p-4 mt-20">
             <h1 className="text-2xl font-bold mb-4">My Volunteer Requests</h1>
             {requests.length === 0 ? (
                 <p>No requests found. Start volunteering now!</p>

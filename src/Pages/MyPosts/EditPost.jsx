@@ -65,7 +65,7 @@ const EditPost = () => {
 
 
     return (
-        <div className='w-full py-16  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500'>
+        <div className='w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500'>
             <div className="p-4 card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
             <h1 className="text-2xl font-bold mb-4">Edit Volunteer Need Post</h1>
             <form onSubmit={handleFormSubmit} className="card-body">

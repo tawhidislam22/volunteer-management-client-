@@ -1,42 +1,62 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-import icons from "../../assets/icons/icons.png"
+import icons from "../../assets/icons/icons.png";
+import { Tooltip } from 'react-tooltip';
+
 const Navbar = () => {
-    const { signOutUser, user } = useAuth()
-    const navigate=useNavigate()
-    const links = <>
-        <NavLink className='btn mr-3' to='/'><li>Home</li></NavLink>
-        <NavLink className='btn mr-3' to='/allPosts'><li>All voluteer need posts</li></NavLink>
-        {
-            user ? <div>
-                
-                
-                <NavLink className='btn mr-3' to='/addVolunteerPost'><li>Add Volunteer Post</li></NavLink>
-            </div> : <div>
-            </div>
-        }
+    const { signOutUser, user,theme, toggleTheme } = useAuth();
+    const navigate = useNavigate();
 
+    const links = (
+        <>
+            <NavLink
+                className={({ isActive }) =>
+                    `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                }
+                to='/'
+            >
+                <li>Home</li>
+            </NavLink>
+            <NavLink
+                className={({ isActive }) =>
+                    `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                }
+                to='/allPosts'
+            >
+                <li>All Volunteer Need Posts</li>
+            </NavLink>
+            {user ? (
+                <NavLink
+                    className={({ isActive }) =>
+                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                    }
+                    to='/addVolunteerPost'
+                >
+                    <li>Add Volunteer Post</li>
+                </NavLink>
+            ) : null}
+        </>
+    );
 
-
-    </>
     const handleSignout = () => {
         signOutUser()
-            .then(res => {
+            .then(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "User signout successfully",
+                    title: "User signed out successfully",
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate('/');
             })
-            .catch(err => console.log(err.message))
-    }
+            .catch(err => console.log(err.message));
+    };
+
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-md">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,55 +65,96 @@ const Navbar = () => {
                             className="h-5 w-5"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke="currentColor">
+                            stroke="currentColor"
+                        >
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth="2"
-                                d="M4 6h16M4 12h8m-8 6h16" />
+                                d="M4 6h16M4 12h8m-8 6h16"
+                            />
                         </svg>
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                    >
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><img className='w-12' src={icons} alt="" /> VolunSphere</a>
+                <Link onClick={() => navigate('/')} className="btn btn-ghost text-xl">
+                    <img className='w-12' src={icons} alt="icon" /> VolunSphere
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {links}
-                </ul>
+                <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
             <div className="navbar-end">
-                {
-                    user ? <>
-                        <div className="dropdown dropdown-end">
+                {user ? (
+                    <>
+                        <div className="dropdown dropdown-end mr-3">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img
-                                        alt="Tailwind CSS Navbar component"
-                                        src={user?.photoURL} />
+                                        alt="User avatar"
+                                        data-tooltip-id="my-tooltip"
+                                        data-tooltip-content={user?.displayName}
+                                        data-tooltip-place="top"
+                                        src={user?.photoURL}
+                                    />
+                                    <Tooltip id="my-tooltip" />
                                 </div>
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <NavLink className='btn mr-3' to='/myPosts'><li>My Posts</li></NavLink>
-                                <NavLink className='btn mr-3' to='/myRequests'><li>My Requests</li></NavLink>
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                            >
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
+                                    }
+                                    to='/myPosts'
+                                >
+                                    <li>My Posts</li>
+                                </NavLink>
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
+                                    }
+                                    to='/myRequests'
+                                >
+                                    <li>My Requests</li>
+                                </NavLink>
                             </ul>
                         </div>
-                        <button onClick={handleSignout} className='btn'>signout</button>
-                    </> : <>
-                        <NavLink className='btn mr-3' to='/login'>LogIn</NavLink>
-                        <NavLink className='btn mr-3' to='/register'>Register</NavLink>
+                        <button onClick={handleSignout} className='btn btn-sm btn-outline'>Sign Out</button>
                     </>
-                }
-
+                ) : (
+                    <>
+                        <NavLink
+                            className="btn mr-3 bg-gradient-to-tr from-indigo-500 to-purple-400 text-white"
+                            to='/login'
+                        >
+                            Log In
+                        </NavLink>
+                        <NavLink
+                            className="btn mr-3 bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                            to='/register'
+                        >
+                            Register
+                        </NavLink>
+                    </>
+                )}
+                <button
+            onClick={toggleTheme}
+            className="ml-3 p-2 rounded focus:outline-none"
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
             </div>
         </div>
     );
 };
 
 export default Navbar;
+

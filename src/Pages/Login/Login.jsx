@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginLottie from '../../assets/lottieFile/login.json'
 import Lottie from "lottie-react";
 import auth from "../../Firebase/Firebase.init";
@@ -73,7 +73,7 @@ const Login = () => {
         }
     }
     return (
-        <div className="w-full bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+        <div className="w-full mt-20 bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
             <div className="hero p-4  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
@@ -107,10 +107,14 @@ const Login = () => {
                                 <button className="btn  text-gray-900  text-xl font-medium  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">Login</button>
                             </div>
                         </form>
+                        <div className="ml-4 text-lg">
+                            <p>You have no account? please <Link className="text-purple-500" to='/register'>Register</Link></p>
+                        </div>
                         <div className="divider divider-primary">OR</div>
                         <div>
                             <SocialLogin></SocialLogin>
                         </div>
+                        
                     </div>
                 </div>
             </div>

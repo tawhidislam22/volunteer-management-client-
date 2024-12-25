@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import VolunteerNeedsNow from '../Home/VolunteerNeedsNow';
 import axios from 'axios';
 import {  RotatingLines } from 'react-loader-spinner';
-
+import { FaSearch } from "react-icons/fa";
 const AllVolunteerNeedPosts = () => {
     const [volunteerPosts, setVolunteerPosts] = useState([]);
     const [search, setSearch] = useState('');
@@ -43,16 +43,18 @@ const AllVolunteerNeedPosts = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-10">
+        <div className="container mt-20 mx-auto px-4 py-10">
             <h1 className="text-3xl font-bold mb-6 text-center">All Volunteer Needs</h1>
-            <div className="mb-6">
+            <div className="mb-6 relative w-3/4 mx-auto gap-4">
+            
                 <input
                     type="text"
                     placeholder="Search by title"
-                    className="border rounded p-2 w-full"
+                    className="border-2 outline-purple-600 pl-10 border-blue-600 rounded p-2 w-full"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
+                <div className='absolute top-4 left-4'><FaSearch /></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {volunteerPosts.map((post) => <VolunteerNeedsNow key={post._id} post={post}></VolunteerNeedsNow>)

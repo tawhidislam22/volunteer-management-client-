@@ -35,22 +35,26 @@ const Home = () => {
     }
     return (
         <div>
-            <div className="bg-banner-Image bg-cover bg-center w-full ">
-                <div className=" bg-black bg-opacity-75">
+            <div className="bg-banner-Image mt-20 bg-cover bg-center w-full ">
+                <div className=" bg-black bg-opacity-75 mt-8">
                     <Banner></Banner>
                 </div>
             </div>
             <div className="text-center my-8">
-                <h2 className="text-2xl mb-3">All Volunteer Posts</h2>
-                <p className="w-3/4 mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam cumque ullam provident facilis, illo delectus aliquam rerum aliquid est eius? Iste dolores excepturi earum culpa. Nisi qui enim beatae voluptate.</p>
+                <h2 className="text-3xl mb-3 font-semibold ">All Volunteer Posts</h2>
+                <p className="w-3/4 mx-auto text-base font-medium mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam cumque ullam provident facilis, illo delectus aliquam rerum aliquid est eius? Iste dolores excepturi earum culpa. Nisi qui enim beatae voluptate.</p>
                 <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
                     {
                         allPosts?.map(post => <VolunteerNeedsNow key={post._id} post={post}></VolunteerNeedsNow>)
                     }
                 </div>
-                <div>
+                <div className="py-6">
 
-                    <Link to='/allPosts'><button className="btn">Show More</button></Link>
+                    <Link to='/allPosts'>
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded-md text-lg font-medium hover:bg-blue-600 transition duration-300">
+                            Show More
+                        </button>
+                    </Link>
 
                 </div>
             </div>

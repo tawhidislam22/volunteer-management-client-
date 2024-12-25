@@ -80,7 +80,7 @@ const VolunteerPostDetails = () => {
         
     }
     return (
-        <div className="p-4">
+        <div className="p-4 mt-20">
             <button onClick={() => navigate(-1)} className="mb-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Back
             </button>

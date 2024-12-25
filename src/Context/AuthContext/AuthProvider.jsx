@@ -9,6 +9,15 @@ const githubAuthProvider=new GithubAuthProvider()
 const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
     const [loading,setLoading]=useState(true)
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    useEffect(() => {
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+        localStorage.setItem('theme', theme);
+      }, [theme]);
+      const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+      };
     const createUser=(email,password)=>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
@@ -54,11 +63,13 @@ const AuthProvider = ({children}) => {
     const info={
         user,
         loading,
+        theme,
         createUser,
         userSignIn,
         signOutUser,
         signInWithGoogle,
-        signInWithGithub
+        signInWithGithub,
+        toggleTheme
 
     }
     return (

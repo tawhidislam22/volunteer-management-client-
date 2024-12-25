@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Register = () => {
     const { createUser } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
@@ -61,7 +62,7 @@ const Register = () => {
 
     }
     return (
-        <div className="w-full bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+        <div className="w-full mt-20 bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
             <div className="hero  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left w-[600px]">
@@ -104,6 +105,9 @@ const Register = () => {
                                 <button className="btn  text-gray-900  text-xl font-medium bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">Register</button>
                             </div>
                         </form>
+                        <div className="ml-4 text-lg">
+                            <p>You have already an account? please <Link className="text-purple-500" to='/login'>Login</Link></p>
+                        </div>
                         <div className="divider divider-primary">OR</div>
                         <div>
                             <SocialLogin></SocialLogin>

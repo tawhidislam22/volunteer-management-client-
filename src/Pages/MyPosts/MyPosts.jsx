@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-
-import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 
@@ -21,10 +19,10 @@ const MyPosts = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/volunteers?email=${user?.email}`)
+        axios.get(`http://localhost:5000/volunteers/email?email=${user?.email}`,{withCredentials:true})
             .then(res => {
                 setLoading(false)
-                setPosts(res.data.posts)
+                setPosts(res.data)
             })
             .catch(err => {
                 console.log(err.message)
@@ -80,7 +78,7 @@ const MyPosts = () => {
 
 
     return (
-        <div className="p-4">
+        <div className="p-4 mt-20">
             <h1 className="text-2xl font-bold mb-4">My Volunteer Need Posts</h1>
             {posts.length === 0 ? (
                 <p>No posts found. Create your first volunteer need post now!</p>
