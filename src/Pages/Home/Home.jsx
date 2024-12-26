@@ -40,7 +40,7 @@ const Home = () => {
     }
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <Helmet>
                 <title>Home | VolunSphere</title>
             </Helmet>
@@ -53,14 +53,12 @@ const Home = () => {
             </div>
 
             {/* Volunteer Posts Section */}
-            <div className="text-center my-8 px-4 sm:px-8 lg:px-16">
+            <div className="text-center pt-12 px-4 sm:px-8 lg:px-16">
                 <h2 className="text-3xl sm:text-4xl mb-3 font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                     All Volunteer Posts
                 </h2>
                 <p className="max-w-3xl mx-auto text-base font-medium mb-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam cumque ullam
-                    provident facilis, illo delectus aliquam rerum aliquid est eius? Iste dolores
-                    excepturi earum culpa. Nisi qui enim beatae voluptate.
+                Discover meaningful volunteer opportunities and make a difference in your community with VolunSphere. Explore diverse causes, connect with organizations, and contribute your time to create a positive impact. Join us today to inspire change and support those in need!
                 </p>
 
                 {/* Posts Grid */}

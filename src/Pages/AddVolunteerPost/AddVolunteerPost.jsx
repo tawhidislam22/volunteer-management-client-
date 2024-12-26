@@ -53,7 +53,7 @@ const AddVolunteerPost = () => {
     };
 
     return (
-        <div className="w-full py-10 px-4 bg-gradient-to-bl from-purple-500 via-blue-500 to-teal-500 dark:bg-gray-900 min-h-screen">
+        <div className="w-full pt-28 pb-10  px-4 bg-gradient-to-bl from-purple-500 via-blue-500 to-teal-500 dark:bg-gray-900 ">
             <Helmet>
                 <title>Add New Post | VolunSphere</title>
             </Helmet>

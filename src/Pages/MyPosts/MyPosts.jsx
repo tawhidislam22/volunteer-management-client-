@@ -64,7 +64,7 @@ const MyPosts = () => {
     }
 
     return (
-        <div className="p-4 mt-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <div className="p-4 pt-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
             <Helmet>
                 <title>MyPosts | VolunSphere</title>
             </Helmet>
@@ -74,7 +74,8 @@ const MyPosts = () => {
                     No posts found. Create your first volunteer need post now!
                 </p>
             ) : (
-                <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
+                <div className='overflow-x-auto'>
+                    <table className="table-auto w-full border-collapse border overflow-x-auto border-gray-300 dark:border-gray-700">
                     <thead>
                         <tr className="bg-gray-200 dark:bg-gray-800">
                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Post Title</th>
@@ -108,6 +109,7 @@ const MyPosts = () => {
                         ))}
                     </tbody>
                 </table>
+                </div>
             )}
         </div>
     );

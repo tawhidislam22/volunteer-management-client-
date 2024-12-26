@@ -57,11 +57,11 @@ const EditPost = () => {
     };
 
     return (
-        <div className="min-h-screen py-16 mt-20 bg-gradient-to-bl from-gray-800 via-purple-900 to-black text-gray-100">
+        <div className="min-h-screen pt-28 pb-12 bg-blue-700 dark:bg-gradient-to-bl from-gray-800 via-purple-900 to-black">
             <Helmet>
                 <title>Edit Post | VolunSphere</title>
             </Helmet>
-            <div className="p-6 mx-auto bg-gray-900 rounded-lg shadow-lg w-full max-w-4xl">
+            <div className="p-6 mx-auto text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-900 rounded-lg shadow-lg w-full max-w-4xl">
                 <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     Edit Volunteer Need Post
                 </h1>
@@ -73,7 +73,7 @@ const EditPost = () => {
                             defaultValue={postDetails?.thumbnail}
                             type="url"
                             placeholder="Thumbnail URL"
-                            className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            className="input input-bordered w-full text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                             required
                         />
                     </div>
@@ -84,7 +84,7 @@ const EditPost = () => {
                             defaultValue={postDetails?.title}
                             type="text"
                             placeholder="Post Title"
-                            className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            className="input input-bordered w-full text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                             required
                         />
                     </div>
@@ -94,7 +94,7 @@ const EditPost = () => {
                             name="description"
                             defaultValue={postDetails?.description}
                             placeholder="Description"
-                            className="textarea textarea-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            className="textarea textarea-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                             required
                         />
                     </div>
@@ -104,7 +104,7 @@ const EditPost = () => {
                             <select
                                 name="category"
                                 defaultValue={postDetails?.category}
-                                className="select select-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="select select-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                             >
                                 <option disabled>Select your category</option>
                                 <option>healthcare</option>
@@ -120,7 +120,7 @@ const EditPost = () => {
                                 defaultValue={postDetails?.location}
                                 type="text"
                                 placeholder="Location"
-                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="input input-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                                 required
                             />
                         </div>
@@ -134,7 +134,7 @@ const EditPost = () => {
                                 type="number"
                                 min={1}
                                 placeholder="No. of volunteers needed"
-                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="input input-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                                 required
                             />
                         </div>
@@ -144,7 +144,7 @@ const EditPost = () => {
                                 showIcon
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="input input-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                             />
                         </div>
                     </div>
@@ -155,17 +155,17 @@ const EditPost = () => {
                                 name="organizerName"
                                 value={user?.displayName}
                                 type="text"
-                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="input input-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                                 readOnly
                             />
                         </div>
                         <div className="w-1/2">
-                            <label className="label text-lg font-medium">Organizer Email</label>
+                            <label className="label text-lg font-medium ">Organizer Email</label>
                             <input
                                 name="organizerEmail"
                                 value={user?.email}
                                 type="email"
-                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                className="input input-bordered w-full  text-gray-800  dark:bg-gray-800 border-gray-700 dark:text-gray-100"
                                 readOnly
                             />
                         </div>

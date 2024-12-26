@@ -63,7 +63,7 @@ const MyRequests = () => {
     }
 
     return (
-        <div className="p-4 mt-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <div className="p-4 pt-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
             <Helmet>
                 <title>My requests | VolunSphere</title>
             </Helmet>
@@ -71,7 +71,8 @@ const MyRequests = () => {
             {requests.length === 0 ? (
                 <p>No requests found. Start volunteering now!</p>
             ) : (
-                <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
                     <thead>
                         <tr>
                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Post Title</th>
@@ -100,6 +101,7 @@ const MyRequests = () => {
                         ))}
                     </tbody>
                 </table>
+                </div>
             )}
         </div>
     );
