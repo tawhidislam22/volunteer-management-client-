@@ -45,7 +45,7 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
         {
           path:'/postDetails/:id',
           element:<PrivateRoute><VolunteerPostDetails></VolunteerPostDetails></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/volunteers/${params.id}`)
+          loader:({params})=>fetch(`https://volunteer-management-server-nu.vercel.app/volunteers/${params.id}`)
         },
         {
           path:'/myPosts',

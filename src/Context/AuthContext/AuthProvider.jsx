@@ -44,14 +44,14 @@ const AuthProvider = ({children}) => {
             setUser(currentUser)
             if(currentUser?.email){
                 const user={email:currentUser.email}
-                axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+                axios.post('https://volunteer-management-server-nu.vercel.app/jwt',user,{withCredentials:true})
                 .then(res=>{
                     setLoading(false)
                    
                 })
             }
             else{
-                axios.post('http://localhost:5000/logout',{},{withCredentials:true})
+                axios.post('https://volunteer-management-server-nu.vercel.app/logout',{},{withCredentials:true})
                 .then(res=>{
                     
                     setLoading(false)

@@ -6,6 +6,7 @@ import VolunteerNeedsNow from "./VolunteerNeedsNow";
 import { Link } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 import { Helmet } from "react-helmet";
+import LatestNews from "./LatestNews";
 
 const Home = () => {
     const [allPosts, setAllPosts] = useState();
@@ -13,7 +14,7 @@ const Home = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/volunteers?limit=6")
+            .get("https://volunteer-management-server-nu.vercel.app/volunteers?limit=6")
             .then((res) => {
                 setLoading(false);
                 setAllPosts(res.data.posts);
@@ -58,7 +59,7 @@ const Home = () => {
                     All Volunteer Posts
                 </h2>
                 <p className="max-w-3xl mx-auto text-base font-medium mb-6">
-                Discover meaningful volunteer opportunities and make a difference in your community with VolunSphere. Explore diverse causes, connect with organizations, and contribute your time to create a positive impact. Join us today to inspire change and support those in need!
+                    Discover meaningful volunteer opportunities and make a difference in your community with VolunSphere. Explore diverse causes, connect with organizations, and contribute your time to create a positive impact. Join us today to inspire change and support those in need!
                 </p>
 
                 {/* Posts Grid */}
@@ -76,6 +77,77 @@ const Home = () => {
                         </button>
                     </Link>
                 </div>
+
+                <section className="py-16">
+                    <h2 className="text-4xl font-extrabold text-center text-purple-400 mb-8">
+                        What Our Volunteers Say
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <p className="text-gray-700 dark:text-gray-300">
+                                "VolunSphere has changed the way I approach volunteering. The platform is easy to use and has connected me with amazing causes!"
+                            </p>
+                            <h3 className="mt-4 font-semibold text-purple-500 dark:text-purple-400">- Alex Johnson</h3>
+                        </div>
+                        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <p className="text-gray-700 dark:text-gray-300">
+                                "I found the perfect volunteer opportunity through VolunSphere. It's a fantastic resource for giving back to the community."
+                            </p>
+                            <h3 className="mt-4 font-semibold text-purple-500 dark:text-purple-400">- Maria Lopez</h3>
+                        </div>
+                        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <p className="text-gray-700 dark:text-gray-300">
+                                "The best platform for anyone looking to make a real impact. Highly recommended!"
+                            </p>
+                            <h3 className="mt-4 font-semibold text-purple-500 dark:text-purple-400">- John Doe</h3>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Extra Section 2: How It Works */}
+                <section className="py-16">
+                    <h2 className="text-4xl font-extrabold text-center text-purple-400 mb-8">
+                        How It Works
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <div className="text-5xl text-purple-500 mb-4">1</div>
+                            <h3 className="text-xl font-semibold mb-2">Sign Up</h3>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Create an account to get started as a volunteer or an organizer.
+                            </p>
+                        </div>
+                        <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <div className="text-5xl text-purple-500 mb-4">2</div>
+                            <h3 className="text-xl font-semibold mb-2">Find Opportunities</h3>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Browse and select from hundreds of volunteering opportunities.
+                            </p>
+                        </div>
+                        <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                            <div className="text-5xl text-purple-500 mb-4">3</div>
+                            <h3 className="text-xl font-semibold mb-2">Make a Difference</h3>
+                            <p className="text-gray-700 dark:text-gray-300">
+                                Volunteer and contribute to meaningful causes in your community.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <LatestNews></LatestNews>
+                </section>
+                <section className="py-16">
+                    <div className="container py-12 rounded-lg mx-auto text-center  bg-purple-500 text-gray-100 ">
+                        <h2 className="text-4xl font-extrabold mb-4">Join Us Today!</h2>
+                        <p className="text-lg mb-6">
+                            Be a part of our vibrant volunteer community. Together, we can make a difference!
+                        </p>
+                        <button className="bg-gray-900 text-gray-100 py-3 px-8 rounded-full text-lg font-medium hover:bg-gray-700 transition duration-300">
+                            Sign Up Now
+                        </button>
+                    </div>
+                </section>
+                
             </div>
         </div>
     );

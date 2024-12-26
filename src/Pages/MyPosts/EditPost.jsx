@@ -16,7 +16,7 @@ const EditPost = () => {
     const [startDate, setStartDate] = useState(new Date());
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/volunteers/${id}`)
+        axios.get(`https://volunteer-management-server-nu.vercel.app/volunteers/${id}`)
             .then(res => {
                 setPostDetails(res.data[0]);
                 setStartDate(new Date(res.data[0]?.deadline));
@@ -41,7 +41,7 @@ const EditPost = () => {
             thumbnail, title, description, category, location, volunteersNeeded, deadline, organizerName, organizerEmail
         };
 
-        axios.put(`http://localhost:5000/volunteers/${id}`, updatedPost)
+        axios.put(`https://volunteer-management-server-nu.vercel.app/volunteers/${id}`, updatedPost)
             .then(res => {
                 if (res.data.modifiedCount) {
                     Swal.fire({

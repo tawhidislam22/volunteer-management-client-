@@ -14,7 +14,7 @@ const AllVolunteerNeedPosts = () => {
     const [isGridView, setIsGridView] = useState(true); // State to toggle layout
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/volunteers?search=${search}&page=${page}&limit=6`)
+        axios.get(`https://volunteer-management-server-nu.vercel.app/volunteers?search=${search}&page=${page}&limit=6`)
             .then(res => {
                 setLoading(false);
                 setVolunteerPosts(res.data.posts);

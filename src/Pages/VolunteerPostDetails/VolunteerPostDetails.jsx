@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
-
+import 'animate.css';
 const VolunteerPostDetails = () => {
     const navigate = useNavigate();
     const data = useLoaderData()
@@ -37,7 +37,7 @@ const VolunteerPostDetails = () => {
         e.preventDefault()
 
         if (post.volunteersNeeded !== 0) {
-            axios.post('http://localhost:5000/requestVolunteers', {
+            axios.post('https://volunteer-management-server-nu.vercel.app/requestVolunteers', {
                 postId: post._id,
                 volunteerName: user?.name,
                 volunteerEmail: user?.email,
@@ -76,14 +76,14 @@ const VolunteerPostDetails = () => {
     }
 
     return (
-        <div className="p-4 mt-20 dark:bg-gray-800 dark:text-white">
+        <div className="p-4 mt-20 dark:bg-gray-800 dark:text-white ">
             <Helmet>
                 <title>Post Details | VolunSphere</title>
             </Helmet>
             <button onClick={() => navigate(-1)} className="mb-4 bg-blue-500 text-white px-4 py-2 rounded dark:bg-blue-700">
                 Back
             </button>
-            <div className='w-full'>
+            <div className='w-full transition animate__animated animate__bounce animate__backInRight'>
                 <div className="max-w-4xl mx-auto p-8 bg-slate-200 dark:bg-gray-900 dark:text-white rounded-lg shadow-lg">
 
                     <h1 className="text-3xl font-bold mb-6 text-center sm:text-left">{post.title}</h1>

@@ -25,7 +25,7 @@ const AddVolunteerPost = () => {
         const organizerEmail = form.organizerEmail.value;
 
         axios
-            .post("http://localhost:5000/volunteers", {
+            .post("https://volunteer-management-server-nu.vercel.app/volunteers", {
                 thumbnail,
                 title,
                 description,

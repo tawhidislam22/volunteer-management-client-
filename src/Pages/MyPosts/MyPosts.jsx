@@ -32,7 +32,7 @@ const MyPosts = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/volunteers/${id}`)
+                axios.delete(`https://volunteer-management-server-nu.vercel.app/volunteers/${id}`)
                     .then(res => {
                         if (res.data.deletedCount) {
                             setPosts((prev) => prev.filter((post) => post._id !== id));
