@@ -34,7 +34,7 @@ const Banner = () => {
                                     <p className="py-6 text-gray-200">
                                     Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Explore More</button>
+                                    <a href="#allposts"><button className="btn btn-primary">Explore More</button></a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ const Banner = () => {
                                     <p className="py-6 text-gray-200">
                                     Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Explore More</button>
+                                    <a href="#allposts"><button className="btn btn-primary">Explore More</button></a>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ const Banner = () => {
                                     <p className="py-6 text-gray-200">
                                     Welcome to our volunteer management platform, where opportunities to make a difference await. Connect with meaningful causes, post volunteer needs, or lend a helping hand to those in your community. Together, let's create a positive impact and build a better tomorrow!
                                     </p>
-                                    <button className="btn btn-primary">Explore More</button>
+                                    <a href="#allposts"><button className="btn btn-primary">Explore More</button></a>
                                 </div>
                             </div>
                         </div>

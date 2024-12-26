@@ -139,12 +139,14 @@ const VolunteerPostDetails = () => {
                                     </div>
 
                                     <div className="mt-4 flex justify-between">
-                                        <button
+                                        <Link>
+                                        <button onClick={() => navigate(-1)}
                                             type="submit"
                                             className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                                         >
                                             Request
                                         </button>
+                                        </Link>
                                         <button
                                             type="button"
                                             className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700"

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 import { Helmet } from "react-helmet";
 import LatestNews from "./LatestNews";
-
 const Home = () => {
     const [allPosts, setAllPosts] = useState();
     const [loading, setLoading] = useState(true);
@@ -54,7 +53,7 @@ const Home = () => {
             </div>
 
             {/* Volunteer Posts Section */}
-            <div className="text-center pt-12 px-4 sm:px-8 lg:px-16">
+            <div id="allposts" className="text-center pt-12 px-4 sm:px-8 lg:px-16">
                 <h2 className="text-3xl sm:text-4xl mb-3 font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                     All Volunteer Posts
                 </h2>

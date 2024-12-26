@@ -4,6 +4,7 @@ import axios from 'axios';
 import { RotatingLines } from 'react-loader-spinner';
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 const AllVolunteerNeedPosts = () => {
     const [volunteerPosts, setVolunteerPosts] = useState([]);
@@ -40,9 +41,9 @@ const AllVolunteerNeedPosts = () => {
             </div>
         );
     }
-
+    
     return (
-        <div className="min-h-screen py-20 md:py-16 bg-slate-100 dark:bg-gray-900 dark:text-gray-200 transition duration-300">
+        <div className="min-h-screen pb-16 pt-20 md:pt-28  bg-slate-100 dark:bg-gray-900 dark:text-gray-200 transition duration-300">
             <Helmet>
                 <title>All Posts | VolunSphere</title>
             </Helmet>
@@ -71,7 +72,7 @@ const AllVolunteerNeedPosts = () => {
                     </div>
                 </div>
                 {isGridView ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
                         {volunteerPosts.map((post) => (
                             <VolunteerNeedsNow key={post._id} post={post} />
                         ))}
@@ -94,7 +95,7 @@ const AllVolunteerNeedPosts = () => {
                                         <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{post.category}</td>
                                         <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">{post.deadline}</td>
                                         <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
-                                            <button className="text-purple-500 hover:underline">View Details</button>
+                                            <Link to={`/postDetails/${post._id}`}><button className="text-purple-500 hover:underline">View Details</button></Link>
                                         </td>
                                     </tr>
                                 ))}
