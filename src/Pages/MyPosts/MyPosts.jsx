@@ -7,13 +7,14 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
     const { user } = useAuth()
     const [loading, setLoading] = useState(true)
-    const axiosSecure=useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
 
 
 
@@ -28,7 +29,7 @@ const MyPosts = () => {
         //     .catch(err => {
         //         console.log(err.message)
         //     })
-            axiosSecure.get(`/volunteers/email?email=${user?.email}`)
+        axiosSecure.get(`/volunteers/email?email=${user?.email}`)
             .then(res => {
                 setLoading(false)
                 setPosts(res.data)
@@ -83,6 +84,9 @@ const MyPosts = () => {
 
     return (
         <div className="p-4 mt-20">
+            <Helmet>
+                <title>MyPosts | VolunSphere</title>
+            </Helmet>
             <h1 className="text-2xl font-bold mb-4">My Volunteer Need Posts</h1>
             {posts.length === 0 ? (
                 <p>No posts found. Create your first volunteer need post now!</p>

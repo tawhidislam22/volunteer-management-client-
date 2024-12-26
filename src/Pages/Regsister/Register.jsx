@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const Register = () => {
     const { createUser } = useAuth()
     const [showPassword, setShowPassword] = useState(false)
@@ -16,7 +17,7 @@ const Register = () => {
         const email = e.target.email.value;
         const photoURL = e.target.photoURL.value;
         const password = e.target.password.value;
-        
+
         if (password.length < 6) {
 
             toast.error('Password should be 6 character or longer', {
@@ -63,6 +64,9 @@ const Register = () => {
     }
     return (
         <div className="w-full mt-20 bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+            <Helmet>
+                <title>Register | VolunSphere</title>
+            </Helmet>
             <div className="hero  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left w-[600px]">

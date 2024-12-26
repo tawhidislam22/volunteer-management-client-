@@ -5,6 +5,7 @@ import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 const VolunteerPostDetails = () => {
@@ -12,7 +13,7 @@ const VolunteerPostDetails = () => {
     const data = useLoaderData()
     const [editMode, setEditMode] = useState(false);
     const [suggestion, setSuggestion] = useState("");
-    
+
     const post = data[0]
     const { user } = useAuth()
     const handleBeAVolunteer = () => {
@@ -35,15 +36,15 @@ const VolunteerPostDetails = () => {
     }
     const handleRequest = e => {
         e.preventDefault()
-        
-        if(post.volunteersNeeded !==0){
+
+        if (post.volunteersNeeded !== 0) {
             axios.post('http://localhost:5000/requestVolunteers', {
                 postId: post._id,
                 volunteerName: user?.name,
                 volunteerEmail: user?.email,
                 suggestion,
                 status: "requested",
-                organizerEmail:post.organizerEmail
+                organizerEmail: post.organizerEmail
 
             })
                 .then(res => {
@@ -60,9 +61,9 @@ const VolunteerPostDetails = () => {
                 .catch(err => {
                     console.log(err.message)
                 })
-                
-                setEditMode(false)
-        }else{
+
+            setEditMode(false)
+        } else {
             toast.warn('No volunteer post available now!', {
                 position: "top-center",
                 autoClose: 1499,
@@ -74,13 +75,16 @@ const VolunteerPostDetails = () => {
                 theme: "light",
 
             });
-        }    
-        
-               
-        
+        }
+
+
+
     }
     return (
         <div className="p-4 mt-20">
+            <Helmet>
+                <title>Post Details | VolunSphere</title>
+            </Helmet>
             <button onClick={() => navigate(-1)} className="mb-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Back
             </button>

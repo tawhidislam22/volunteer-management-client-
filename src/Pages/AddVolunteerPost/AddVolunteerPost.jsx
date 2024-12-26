@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
 import 'react-datepicker/dist/react-datepicker.css'
+import { Helmet } from "react-helmet";
 
 const AddVolunteerPost = () => {
     const { user } = useAuth()
@@ -42,6 +43,9 @@ const AddVolunteerPost = () => {
     }
     return (
         <div className="w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+            <Helmet>
+                <title>Add new post | VolunSphere</title>
+            </Helmet>
             <div className="card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
                 <h2 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Add your volunteer need post</h2>
                 <form onSubmit={handleAddVolunteer} className="card-body">
@@ -101,7 +105,7 @@ const AddVolunteerPost = () => {
                                 showIcon
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-                                
+
                             /></div>
                         </div>
                     </div>

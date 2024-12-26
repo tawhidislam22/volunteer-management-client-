@@ -9,31 +9,32 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 const Login = () => {
-    const {userSignIn}=useAuth()
-    const location=useLocation()
-    const navigate=useNavigate()
-    const from=location.state || "/"
+    const { userSignIn } = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state || "/"
     const [showPassword, setShowPassword] = useState(false)
     const emailRef = useRef()
-    const handleLogin=e=>{
+    const handleLogin = e => {
         e.preventDefault()
-        const email=e.target.email.value;
-        const password=e.target.password.value;
-        userSignIn(email,password)
-        .then(res=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User login successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate(from)
-        })
-        .catch(err=>{
-            console.log(err.message)
-        })
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        userSignIn(email, password)
+            .then(res => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User login successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
 
 
     }
@@ -51,7 +52,7 @@ const Login = () => {
                 theme: "light",
 
             });
-            
+
         }
         else {
             sendPasswordResetEmail(auth, email)
@@ -76,14 +77,17 @@ const Login = () => {
     }
     return (
         <div className="w-full mt-20 bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+            <Helmet>
+                <title>Login | VolunSphere</title>
+            </Helmet>
             <div className="hero p-4  min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
-                        
+
                         <Lottie animationData={loginLottie}></Lottie>
                     </div>
                     <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-                    <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Login now!</h1>
+                        <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Login now!</h1>
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label ">
@@ -100,10 +104,10 @@ const Login = () => {
                                     <a href="#" onClick={handleForgetPassword} className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                                 <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs text-lg absolute right-2 top-14">
-                                {
-                                    showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
-                                }
-                            </button>
+                                    {
+                                        showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                    }
+                                </button>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn  text-gray-900  text-xl font-medium  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">Login</button>
@@ -116,7 +120,7 @@ const Login = () => {
                         <div>
                             <SocialLogin></SocialLogin>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

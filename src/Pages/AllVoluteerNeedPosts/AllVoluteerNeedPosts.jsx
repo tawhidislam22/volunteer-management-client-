@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import VolunteerNeedsNow from '../Home/VolunteerNeedsNow';
 import axios from 'axios';
-import {  RotatingLines } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 import { FaSearch } from "react-icons/fa";
+import { Helmet } from 'react-helmet';
 const AllVolunteerNeedPosts = () => {
     const [volunteerPosts, setVolunteerPosts] = useState([]);
     const [search, setSearch] = useState('');
@@ -44,9 +45,12 @@ const AllVolunteerNeedPosts = () => {
 
     return (
         <div className="container mt-20 mx-auto px-4 py-10">
+            <Helmet>
+                <title>All Posts | VolunSphere</title>
+            </Helmet>
             <h1 className="text-3xl font-bold mb-6 text-center">All Volunteer Needs</h1>
             <div className="mb-6 relative w-3/4 mx-auto gap-4">
-            
+
                 <input
                     type="text"
                     placeholder="Search by title"

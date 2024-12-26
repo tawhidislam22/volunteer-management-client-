@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import VolunteerNeedsNow from "./VolunteerNeedsNow";
 import { Link } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
-
+import {Helmet} from "react-helmet";
 const Home = () => {
     const [allPosts, setAllPosts] = useState()
     const [loading, setLoading] = useState(true)
@@ -36,6 +36,9 @@ const Home = () => {
     return (
         <div>
             <div className="bg-banner-Image mt-20 bg-cover bg-center w-full ">
+                <Helmet>
+                    <title>Home | VolunSphere</title>
+                </Helmet>
                 <div className=" bg-black bg-opacity-75 mt-8">
                     <Banner></Banner>
                 </div>
