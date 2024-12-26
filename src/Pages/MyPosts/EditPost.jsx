@@ -46,7 +46,7 @@ const EditPost = () => {
                 if (res.data.modifiedCount) {
                     Swal.fire({
                         icon: "success",
-                        title: "Post updated successfully!",
+                        title: "Your post edited successfully!",
                         showConfirmButton: false,
                         timer: 1500,
                     });
