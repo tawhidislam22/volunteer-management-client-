@@ -1,5 +1,3 @@
-
-// pages/MyNeedPosts.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
@@ -9,31 +7,18 @@ import { ColorRing } from 'react-loader-spinner';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet';
 
-
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
-    const { user } = useAuth()
-    const [loading, setLoading] = useState(true)
-    const axiosSecure = useAxiosSecure()
-
-
-
+    const { user } = useAuth();
+    const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-
-        // axios.get(`http://localhost:5000/volunteers/email?email=${user?.email}`,{withCredentials:true})
-        //     .then(res => {
-        //         setLoading(false)
-        //         setPosts(res.data)
-        //     })
-        //     .catch(err => {
-        //         console.log(err.message)
-        //     })
         axiosSecure.get(`/volunteers/email?email=${user?.email}`)
             .then(res => {
-                setLoading(false)
-                setPosts(res.data)
-            })
+                setLoading(false);
+                setPosts(res.data);
+            });
     }, [user?.email]);
 
     const handleDelete = async (id) => {
@@ -57,17 +42,14 @@ const MyPosts = () => {
                                 icon: "success"
                             });
                         }
-
-                    })
-
+                    });
             }
         });
-
     };
 
     if (loading) {
         return (
-            <div className="min-h-screen flex justify-center items-center">
+            <div className="min-h-screen flex justify-center items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
                 <ColorRing
                     visible={true}
                     height="80"
@@ -78,49 +60,46 @@ const MyPosts = () => {
                     colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
                 />
             </div>
-        )
+        );
     }
 
-
     return (
-        <div className="p-4 mt-20">
+        <div className="p-4 mt-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
             <Helmet>
                 <title>MyPosts | VolunSphere</title>
             </Helmet>
             <h1 className="text-2xl font-bold mb-4">My Volunteer Need Posts</h1>
             {posts.length === 0 ? (
-                <p>No posts found. Create your first volunteer need post now!</p>
+                <p className="text-center text-gray-600 dark:text-gray-400">
+                    No posts found. Create your first volunteer need post now!
+                </p>
             ) : (
-                <table className="table-auto w-full border-collapse border border-gray-300">
+                <table className="table-auto w-full border-collapse border border-gray-300 dark:border-gray-700">
                     <thead>
-                        <tr>
-                            <th className="border border-gray-300 px-4 py-2">Post Title</th>
-                            <th className="border border-gray-300 px-4 py-2">Category</th>
-                            <th className="border border-gray-300 px-4 py-2">Deadline</th>
-                            <th className="border border-gray-300 px-4 py-2">Location</th>
-                            <th className="border border-gray-300 px-4 py-2">Actions</th>
+                        <tr className="bg-gray-200 dark:bg-gray-800">
+                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Post Title</th>
+                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Category</th>
+                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Deadline</th>
+                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Location</th>
+                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {posts.map((post) => (
-                            <tr key={post._id}>
-                                <td className="border border-gray-300 px-4 py-2">{post.title}</td>
-                                <td className="border border-gray-300 px-4 py-2">{post.category}</td>
-                                <td className="border border-gray-300 px-4 py-2">{new Date(post.deadline).toLocaleDateString()}</td>
-                                <td className="border border-gray-300 px-4 py-2">{post.location}</td>
-                                <td className="border border-gray-300 px-4 py-2">
-
+                            <tr key={post._id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{post.title}</td>
+                                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{post.category}</td>
+                                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{new Date(post.deadline).toLocaleDateString()}</td>
+                                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{post.location}</td>
+                                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 flex space-x-2">
                                     <Link to={`/myPosts/edit/${post._id}`}>
-                                        <button
-                                            className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                                        >
+                                        <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded">
                                             Edit
                                         </button>
                                     </Link>
-
                                     <button
                                         onClick={() => handleDelete(post._id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded"
+                                        className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded"
                                     >
                                         Delete
                                     </button>
@@ -133,4 +112,5 @@ const MyPosts = () => {
         </div>
     );
 };
+
 export default MyPosts;

@@ -67,36 +67,36 @@ const Register = () => {
             <Helmet>
                 <title>Register | VolunSphere</title>
             </Helmet>
-            <div className="hero  min-h-screen">
+            <div className="hero  min-h-screen  dark:bg-gray-900 dark:text-white">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left w-[600px]">
+                    <div className="text-center lg:text-left md:w-[400px] lg:w-[600px]">
                         <Lottie animationData={registerLottie}></Lottie>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-                        <h1 className="text-4xl font-bold mx-auto p-4 bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Register now!</h1>
+                    <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl dark:bg-gray-800">
+                        <h1 className="text-4xl font-bold mx-auto p-4  bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Register now!</h1>
 
                         <form onSubmit={handleRegister} className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl font-medium">Name</span>
+                                    <span className="label-text text-xl font-medium dark:text-slate-100">Name</span>
                                 </label>
                                 <input name="name" type="text" placeholder="name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label text-xl font-medium">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text dark:text-slate-100">Email</span>
                                 </label>
                                 <input name="email" type="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-xl font-medium">Photo URL</span>
+                                    <span className="label-text text-xl font-medium dark:text-slate-100">Photo URL</span>
                                 </label>
                                 <input name="photoURL" type="url" placeholder="photoURL" className="input input-bordered" required />
                             </div>
                             <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text text-xl font-medium">Password</span>
+                                    <span className="label-text text-xl font-medium dark:text-slate-100">Password</span>
                                 </label>
                                 <input name="password" type={showPassword ? 'text' : 'password'} placeholder="password" className="input input-bordered" required />
                                 <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs text-xl absolute right-2 top-14">

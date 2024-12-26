@@ -76,28 +76,28 @@ const Login = () => {
         }
     }
     return (
-        <div className="w-full mt-20 bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+        <div className="w-full mt-20   bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
             <Helmet>
                 <title>Login | VolunSphere</title>
             </Helmet>
-            <div className="hero p-4  min-h-screen">
+            <div className="hero p-4  min-h-screen dark:bg-gray-900 dark:text-white">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
 
                         <Lottie animationData={loginLottie}></Lottie>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
+                    <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl  dark:bg-gray-800 ">
                         <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Login now!</h1>
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label ">
-                                    <span className="label-text text-xl font-medium">Email</span>
+                                    <span className="label-text text-xl font-medium dark:text-slate-100">Email</span>
                                 </label>
                                 <input name="email" ref={emailRef} type="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text text-xl font-medium">Password</span>
+                                    <span className="label-text text-xl font-medium dark:text-slate-100">Password</span>
                                 </label>
                                 <input name="password" type={showPassword ? 'text' : 'password'} placeholder="password" className="input input-bordered" required />
                                 <label className="label">

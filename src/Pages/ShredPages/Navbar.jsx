@@ -6,14 +6,18 @@ import icons from "../../assets/icons/icons.png";
 import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
-    const { signOutUser, user,theme, toggleTheme } = useAuth();
+    const { signOutUser, user, theme, toggleTheme } = useAuth();
     const navigate = useNavigate();
 
     const links = (
         <>
             <NavLink
                 className={({ isActive }) =>
-                    `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                    `btn mr-3 ${
+                        isActive
+                            ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                            : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                    }`
                 }
                 to='/'
             >
@@ -21,7 +25,11 @@ const Navbar = () => {
             </NavLink>
             <NavLink
                 className={({ isActive }) =>
-                    `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                    `btn mr-3 ${
+                        isActive
+                            ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                            : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                    }`
                 }
                 to='/allPosts'
             >
@@ -30,7 +38,11 @@ const Navbar = () => {
             {user ? (
                 <NavLink
                     className={({ isActive }) =>
-                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white" : ""}`
+                        `btn mr-3 ${
+                            isActive
+                                ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                        }`
                     }
                     to='/addVolunteerPost'
                 >
@@ -52,17 +64,17 @@ const Navbar = () => {
                 });
                 navigate('/');
             })
-            .catch(err => console.log(err.message));
+            .catch((err) => console.log(err.message));
     };
 
     return (
-        <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-md  dark:bg-gray-900 ">
+        <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-md dark:bg-gray-900 dark:text-gray-100 transition duration-300">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -77,19 +89,24 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                        className="menu menu-sm dropdown-content bg-base-100 dark:bg-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                     >
                         {links}
                     </ul>
                 </div>
-                <Link onClick={() => navigate('/')} className="btn btn-ghost text-xl">
-                    <img className='w-12' src={icons} alt="icon" /> VolunSphere
+                <div className='hidden md:block'>
+                <Link
+                    onClick={() => navigate('/')}
+                    className="btn flex gap-4 btn-ghost text-xl "
+                >
+                    <img className="w-12" src={icons} alt="icon" /> VolunSphere
                 </Link>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex items-center">
                 {user ? (
                     <>
                         <div className="dropdown dropdown-end mr-3">
@@ -107,11 +124,15 @@ const Navbar = () => {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                                className="menu menu-sm dropdown-content bg-base-100 dark:bg-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                             >
                                 <NavLink
                                     className={({ isActive }) =>
-                                        `btn mr-3 mb-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
+                                        `btn mr-3 mb-3 ${
+                                            isActive
+                                                ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                                        }`
                                     }
                                     to='/myPosts'
                                 >
@@ -119,7 +140,11 @@ const Navbar = () => {
                                 </NavLink>
                                 <NavLink
                                     className={({ isActive }) =>
-                                        `btn mr-3 ${isActive ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white" : ""}`
+                                        `btn mr-3 ${
+                                            isActive
+                                                ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                                        }`
                                     }
                                     to='/myRequests'
                                 >
@@ -127,7 +152,12 @@ const Navbar = () => {
                                 </NavLink>
                             </ul>
                         </div>
-                        <button onClick={handleSignout} className='btn btn-sm btn-outline'>Sign Out</button>
+                        <button
+                            onClick={handleSignout}
+                            className="btn btn-sm btn-outline dark:bg-gray-700 dark:text-base-100"
+                        >
+                            Sign Out
+                        </button>
                     </>
                 ) : (
                     <>
@@ -146,15 +176,14 @@ const Navbar = () => {
                     </>
                 )}
                 <button
-            onClick={toggleTheme}
-            className="ml-3 p-2 rounded focus:outline-none"
-          >
-            {theme === "light" ? "🌙" : "☀️"}
-          </button>
+                    onClick={toggleTheme}
+                    className="ml-3 p-2 rounded focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                >
+                    {theme === "light" ? "🌙" : "☀️"}
+                </button>
             </div>
         </div>
     );
 };
 
 export default Navbar;
-

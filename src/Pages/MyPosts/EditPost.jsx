@@ -1,34 +1,28 @@
-// pages/EditNeedPost.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import { Helmet } from 'react-helmet';
+
 const EditPost = () => {
-    const { id } = useParams(); // Get the post ID from the URL
+    const { id } = useParams();
     const navigate = useNavigate();
     const [postDetails, setPostDetails] = useState(null);
-    const { user } = useAuth()
+    const { user } = useAuth();
     const [startDate, setStartDate] = useState(new Date());
-    useEffect(() => {
 
+    useEffect(() => {
         axios.get(`http://localhost:5000/volunteers/${id}`)
             .then(res => {
-                setPostDetails(res.data[0])
-
+                setPostDetails(res.data[0]);
+                setStartDate(new Date(res.data[0]?.deadline));
             })
-            .catch(err => {
-                console.log(err.message)
-            })
-
-
+            .catch(err => console.log(err.message));
     }, [id]);
-
-
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -42,115 +36,144 @@ const EditPost = () => {
         const deadline = startDate;
         const organizerName = form.organizerName.value;
         const organizerEmail = form.organizerEmail.value;
+
         const updatedPost = {
             thumbnail, title, description, category, location, volunteersNeeded, deadline, organizerName, organizerEmail
-        }
-        axios.put(`http://localhost:5000/volunteers/${id}`,
-            updatedPost)
+        };
+
+        axios.put(`http://localhost:5000/volunteers/${id}`, updatedPost)
             .then(res => {
                 if (res.data.modifiedCount) {
                     Swal.fire({
-
                         icon: "success",
-                        title: "User login successfully",
+                        title: "Post updated successfully!",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 1500,
                     });
-                    navigate(-1)
+                    navigate(-1);
                 }
             })
-            .catch(err => {
-                console.log(err.message)
-            })
+            .catch(err => console.log(err.message));
     };
 
-
-
     return (
-        <div className='w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500'>
+        <div className="min-h-screen py-16 mt-20 bg-gradient-to-bl from-gray-800 via-purple-900 to-black text-gray-100">
             <Helmet>
-                <title>Edit post | VolunSphere</title>
+                <title>Edit Post | VolunSphere</title>
             </Helmet>
-            <div className="p-4 card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
-                <h1 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Edit Volunteer Need Post</h1>
-                <form onSubmit={handleFormSubmit} className="card-body">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-xl font-medium">Thumbnail</span>
-                        </label>
-                        <input name='thumbnail' defaultValue={postDetails?.thumbnail} type="url" placeholder="Thumbnail" className="input input-bordered" required />
+            <div className="p-6 mx-auto bg-gray-900 rounded-lg shadow-lg w-full max-w-4xl">
+                <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Edit Volunteer Need Post
+                </h1>
+                <form onSubmit={handleFormSubmit} className="mt-6">
+                    <div className="form-control mb-4">
+                        <label className="label text-lg font-medium">Thumbnail</label>
+                        <input
+                            name="thumbnail"
+                            defaultValue={postDetails?.thumbnail}
+                            type="url"
+                            placeholder="Thumbnail URL"
+                            className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            required
+                        />
                     </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-xl font-medium">Post Title</span>
-                        </label>
-                        <input name="postTitle" defaultValue={postDetails?.title} type="text" placeholder="Post Title" className="input input-bordered" required />
+                    <div className="form-control mb-4">
+                        <label className="label text-lg font-medium">Post Title</label>
+                        <input
+                            name="postTitle"
+                            defaultValue={postDetails?.title}
+                            type="text"
+                            placeholder="Post Title"
+                            className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            required
+                        />
                     </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-xl font-medium">Description</span>
-                        </label>
-                        <input name="description" defaultValue={postDetails?.description} type="textarea" placeholder="Description" className="input input-bordered" required />
+                    <div className="form-control mb-4">
+                        <label className="label text-lg font-medium">Description</label>
+                        <textarea
+                            name="description"
+                            defaultValue={postDetails?.description}
+                            placeholder="Description"
+                            className="textarea textarea-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            required
+                        />
                     </div>
-                    <div className="flex w-full gap-4">
+                    <div className="flex gap-4 mb-4">
                         <div className="w-1/2">
-                            <label className="label">
-                                <span className="label-text text-xl font-medium">Category</span>
-                            </label>
-                            <select name="category" defaultValue={postDetails?.category} className="select select-info w-full max-w-xs">
-                                <option disabled selected>Select your category</option>
+                            <label className="label text-lg font-medium">Category</label>
+                            <select
+                                name="category"
+                                defaultValue={postDetails?.category}
+                                className="select select-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            >
+                                <option disabled>Select your category</option>
                                 <option>healthcare</option>
                                 <option>education</option>
                                 <option>social service</option>
                                 <option>animal welfare</option>
                             </select>
                         </div>
-                        <div className="form-control w-1/2">
-                            <label className="label">
-                                <span className="label-text text-xl font-medium">Location</span>
-                            </label>
-                            <input name="location" defaultValue={postDetails?.location} type="text" placeholder="Location" className="input input-bordered" required />
+                        <div className="w-1/2">
+                            <label className="label text-lg font-medium">Location</label>
+                            <input
+                                name="location"
+                                defaultValue={postDetails?.location}
+                                type="text"
+                                placeholder="Location"
+                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                required
+                            />
                         </div>
                     </div>
-                    <div className="flex w-full gap-4">
+                    <div className="flex gap-4 mb-4">
                         <div className="w-1/2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl font-medium">No. of volunteers needed </span>
-                                </label>
-                                <input name='noVolunteer' defaultValue={postDetails?.volunteersNeeded} type="number" min={1} placeholder="No. of volunteers needed " className="input input-bordered" required />
-                            </div>
+                            <label className="label text-lg font-medium">No. of Volunteers Needed</label>
+                            <input
+                                name="noVolunteer"
+                                defaultValue={postDetails?.volunteersNeeded}
+                                type="number"
+                                min={1}
+                                placeholder="No. of volunteers needed"
+                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                required
+                            />
                         </div>
-                        <div className="form-control w-1/2">
-                            <label className="label">
-                                <span className="label-text text-xl font-medium">Deadline</span>
-                            </label>
-                            <div className="w-full gap-4 p-2"><DatePicker
+                        <div className="w-1/2">
+                            <label className="label text-lg font-medium">Deadline</label>
+                            <DatePicker
                                 showIcon
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-
-                            /></div>
+                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                            />
                         </div>
                     </div>
-                    <div className="flex w-full gap-4">
+                    <div className="flex gap-4 mb-6">
                         <div className="w-1/2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl font-medium">Organizer name</span>
-                                </label>
-                                <input name='organizerName' value={user?.displayName} type="text" placeholder="Organizer name" className="input input-bordered" required />
-                            </div>
+                            <label className="label text-lg font-medium">Organizer Name</label>
+                            <input
+                                name="organizerName"
+                                value={user?.displayName}
+                                type="text"
+                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                readOnly
+                            />
                         </div>
-                        <div className="form-control w-1/2">
-                            <label className="label">
-                                <span className="label-text text-xl font-medium">Organizer email</span>
-                            </label>
-                            <input name="organizerEmail" value={user?.email} type="email" placeholder="organizer email" className="input input-bordered" required />
+                        <div className="w-1/2">
+                            <label className="label text-lg font-medium">Organizer Email</label>
+                            <input
+                                name="organizerEmail"
+                                value={user?.email}
+                                type="email"
+                                className="input input-bordered w-full bg-gray-800 border-gray-700 text-gray-100"
+                                readOnly
+                            />
                         </div>
                     </div>
-                    <div className="form-control mt-6">
-                        <button className="btn text-slate-300 text-lg font-semibold bg-gradient-to-bl to-blue-500  from-purple-500">Update Post</button>
+                    <div className="form-control">
+                        <button className="btn bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 text-gray-100 text-lg font-semibold">
+                            Update Post
+                        </button>
                     </div>
                 </form>
             </div>

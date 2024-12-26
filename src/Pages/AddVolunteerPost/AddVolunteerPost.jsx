@@ -1,16 +1,18 @@
+
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
-import 'react-datepicker/dist/react-datepicker.css'
+import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
 
 const AddVolunteerPost = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
     const [startDate, setStartDate] = useState(new Date());
-    const handleAddVolunteer = e => {
-        e.preventDefault()
+
+    const handleAddVolunteer = (e) => {
+        e.preventDefault();
         const form = e.target;
         const thumbnail = form.thumbnail.value;
         const title = form.postTitle.value;
@@ -18,115 +20,180 @@ const AddVolunteerPost = () => {
         const category = form.category.value;
         const location = form.location.value;
         const volunteersNeeded = form.noVolunteer.value;
-        const deadline = startDates;
+        const deadline = startDate;
         const organizerName = form.organizerName.value;
         const organizerEmail = form.organizerEmail.value;
 
-
-        axios.post('http://localhost:5000/volunteers', {
-            thumbnail, title, description, category, location, volunteersNeeded, deadline, organizerName, organizerEmail
-        })
-            .then(res => {
+        axios
+            .post("http://localhost:5000/volunteers", {
+                thumbnail,
+                title,
+                description,
+                category,
+                location,
+                volunteersNeeded,
+                deadline,
+                organizerName,
+                organizerEmail,
+            })
+            .then((res) => {
                 if (res.data.insertedId) {
                     Swal.fire({
                         icon: "success",
                         title: "Your volunteer post added successfully",
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 1000,
                     });
-                    form.reset()
+                    form.reset();
                 }
             })
-            .catch(err => {
-                console.log(err.message)
-            })
-    }
+            .catch((err) => {
+                console.log(err.message);
+            });
+    };
+
     return (
-        <div className="w-full py-16 mt-20  bg-gradient-to-bl to-teal-500 via-blue-500  from-purple-500">
+        <div className="w-full py-10 px-4 bg-gradient-to-bl from-purple-500 via-blue-500 to-teal-500 dark:bg-gray-900 min-h-screen">
             <Helmet>
-                <title>Add new post | VolunSphere</title>
+                <title>Add New Post | VolunSphere</title>
             </Helmet>
-            <div className="card mx-auto bg-base-100 w-full max-w-3xl  shadow-2xl">
-                <h2 className="mx-auto pt-4 text-4xl font-bold bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">Add your volunteer need post</h2>
-                <form onSubmit={handleAddVolunteer} className="card-body">
+            <div className="card mx-auto bg-base-100 dark:bg-gray-800 dark:text-gray-100 w-full max-w-3xl shadow-2xl p-6 sm:p-10 rounded-lg">
+                <h2 className="text-center text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-b from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                    Add Your Volunteer Need Post
+                </h2>
+                <form onSubmit={handleAddVolunteer} className="space-y-6">
+                    {/* Thumbnail */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl font-medium">Thumbnail</span>
+                            <span className="label-text text-lg font-medium dark:text-gray-200">Thumbnail</span>
                         </label>
-                        <input name='thumbnail' type="url" placeholder="Thumbnail" className="input input-bordered" required />
+                        <input
+                            name="thumbnail"
+                            type="url"
+                            placeholder="Thumbnail URL"
+                            className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                            required
+                        />
                     </div>
+                    {/* Post Title */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl font-medium">Post Title</span>
+                            <span className="label-text text-lg font-medium dark:text-gray-200">Post Title</span>
                         </label>
-                        <input name="postTitle" type="text" placeholder="Post Title" className="input input-bordered" required />
+                        <input
+                            name="postTitle"
+                            type="text"
+                            placeholder="Post Title"
+                            className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                            required
+                        />
                     </div>
+                    {/* Description */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl font-medium">Description</span>
+                            <span className="label-text text-lg font-medium dark:text-gray-200">Description</span>
                         </label>
-                        <input name="description" type="textarea" placeholder="Description" className="input input-bordered" required />
+                        <textarea
+                            name="description"
+                            placeholder="Description"
+                            className="textarea textarea-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                            required
+                        ></textarea>
                     </div>
-                    <div className="flex w-full gap-4 grow">
-                        <div className="w-1/2">
+                    {/* Category and Location */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="w-full sm:w-1/2">
                             <label className="label">
-                                <span className="label-text text-xl font-medium">Category</span>
+                                <span className="label-text text-lg font-medium dark:text-gray-200">Category</span>
                             </label>
-                            <select name="category" defaultValue='Select your category' className="select select-info w-full max-w-xs">
-                                <option disabled selected>Select your category</option>
-                                <option>healthcare</option>
-                                <option>education</option>
-                                <option>social service</option>
-                                <option>animal welfare</option>
+                            <select
+                                name="category"
+                                defaultValue="Select your category"
+                                className="select select-info dark:bg-gray-700 dark:border-gray-600 w-full"
+                                required
+                            >
+                                <option disabled>Select your category</option>
+                                <option>Healthcare</option>
+                                <option>Education</option>
+                                <option>Social Service</option>
+                                <option>Animal Welfare</option>
                             </select>
                         </div>
-                        <div className="form-control w-1/2">
+                        <div className="w-full sm:w-1/2">
                             <label className="label">
-                                <span className="label-text text-xl font-medium">Location</span>
+                                <span className="label-text text-lg font-medium dark:text-gray-200">Location</span>
                             </label>
-                            <input name="location" type="text" placeholder="Location" className="input input-bordered" required />
+                            <input
+                                name="location"
+                                type="text"
+                                placeholder="Location"
+                                className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                                required
+                            />
                         </div>
                     </div>
-                    <div className="flex w-full gap-4">
-                        <div className="w-1/2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl font-medium">No. of volunteers needed </span>
-                                </label>
-                                <input name='noVolunteer' type="number" min={1} placeholder="No. of volunteers needed " className="input input-bordered" required />
-                            </div>
-                        </div>
-                        <div className="form-control w-1/2">
+                    {/* Volunteers Needed and Deadline */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="w-full sm:w-1/2">
                             <label className="label">
-                                <span className="label-text text-xl font-medium">Deadline</span>
+                                <span className="label-text text-lg font-medium dark:text-gray-200">
+                                    No. of Volunteers Needed
+                                </span>
                             </label>
-                            {/* <input name="deadline" type="date" placeholder="Deadline" className="input  outline-blue-600" required /> */}
-                            <div className="w-full gap-4 p-2"><DatePicker
-                                showIcon
+                            <input
+                                name="noVolunteer"
+                                type="number"
+                                min={1}
+                                placeholder="Number of Volunteers"
+                                className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                                required
+                            />
+                        </div>
+                        <div className="w-full sm:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-lg font-medium dark:text-gray-200">Deadline</span>
+                            </label>
+                            <DatePicker
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-
-                            /></div>
+                                className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                            />
                         </div>
                     </div>
-                    <div className="flex w-full gap-4">
-                        <div className="w-1/2">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl font-medium">Organizer name</span>
-                                </label>
-                                <input name='organizerName' value={user?.userName} type="text" placeholder="Organizer name" className="input outline-blue-600" required />
-                            </div>
-                        </div>
-                        <div className="form-control w-1/2">
+                    {/* Organizer Name and Email */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="w-full sm:w-1/2">
                             <label className="label">
-                                <span className="label-text text-xl font-medium">Organizer email</span>
+                                <span className="label-text text-lg font-medium dark:text-gray-200">Organizer Name</span>
                             </label>
-                            <input name="organizerEmail" value={user?.email} type="email" placeholder="organizer email" className="input  outline-blue-600" required />
+                            <input
+                                name="organizerName"
+                                type="text"
+                                value={user?.userName || ""}
+                                placeholder="Organizer Name"
+                                className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                                required
+                            />
+                        </div>
+                        <div className="w-full sm:w-1/2">
+                            <label className="label">
+                                <span className="label-text text-lg font-medium dark:text-gray-200">Organizer Email</span>
+                            </label>
+                            <input
+                                name="organizerEmail"
+                                type="email"
+                                value={user?.email || ""}
+                                placeholder="Organizer Email"
+                                className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
+                                required
+                            />
                         </div>
                     </div>
+                    {/* Submit Button */}
                     <div className="form-control mt-6">
-                        <button className="btn bg-gradient-to-bl to-blue-500  from-purple-500">Add Post Button</button>
+                        <button className="btn btn-primary w-full sm:w-auto bg-gradient-to-bl from-purple-500 to-blue-500 text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition">
+                            Add Post
+                        </button>
                     </div>
                 </form>
             </div>

@@ -1,81 +1,84 @@
-
 import React, { useEffect, useState } from 'react';
 import VolunteerNeedsNow from '../Home/VolunteerNeedsNow';
 import axios from 'axios';
 import { RotatingLines } from 'react-loader-spinner';
 import { FaSearch } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
+
 const AllVolunteerNeedPosts = () => {
     const [volunteerPosts, setVolunteerPosts] = useState([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [loading, setLoading] = useState(true)
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`http://localhost:5000/volunteers?search=${search}&page=${page}&limit=6`)
             .then(res => {
-                setLoading(false)
+                setLoading(false);
                 setVolunteerPosts(res.data.posts);
                 setTotalPages(res.data.totalPages);
             })
             .catch(error => {
                 console.error('Error fetching volunteer needs:', error);
-            })
+            });
     }, [search, page]);
 
     if (loading) {
         return (
-            <div className='min-h-screen flex justify-center items-center'>
+            <div className="min-h-screen flex justify-center items-center bg-gray-900 text-gray-200">
                 <RotatingLines
                     visible={true}
                     height="96"
                     width="96"
-                    color="grey"
+                    color="#A855F7"
                     strokeWidth="5"
                     animationDuration="0.75"
                     ariaLabel="rotating-lines-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
                 />
             </div>
-        )
+        );
     }
 
     return (
-        <div className="container mt-20 mx-auto px-4 py-10">
+        <div className="min-h-screen py-10 bg-slate-100  dark:bg-gray-900 dark:text-gray-200 transition duration-300">
             <Helmet>
                 <title>All Posts | VolunSphere</title>
             </Helmet>
-            <h1 className="text-3xl font-bold mb-6 text-center">All Volunteer Needs</h1>
-            <div className="mb-6 relative w-3/4 mx-auto gap-4">
-
-                <input
-                    type="text"
-                    placeholder="Search by title"
-                    className="border-2 outline-purple-600 pl-10 border-blue-600 rounded p-2 w-full"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-                <div className='absolute top-4 left-4'><FaSearch /></div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {volunteerPosts.map((post) => <VolunteerNeedsNow key={post._id} post={post}></VolunteerNeedsNow>)
-
-                }
-            </div>
-            <div className="mt-8 flex justify-center space-x-2">
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setPage(index + 1)}
-                        className={`px-4 py-2 rounded ${page === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl font-extrabold text-center text-purple-400 mb-10">
+                    All Volunteer Needs
+                </h1>
+                <div className="mb-10 relative w-full md:w-3/4 lg:w-1/2 mx-auto">
+                    <input
+                        type="text"
+                        placeholder="Search by title"
+                        className="border border-gray-700 outline-none pl-12 py-2 rounded-full w-full bg-gray-200 text-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 shadow-sm focus:ring focus:ring-purple-500"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <FaSearch className="absolute top-3 left-4 text-purple-500 dark:text-purple-400" />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {volunteerPosts.map((post) => (
+                        <VolunteerNeedsNow key={post._id} post={post} />
+                    ))}
+                </div>
+                <div className="mt-8 flex justify-center space-x-2">
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setPage(index + 1)}
+                            className={`px-4 py-2 text-lg font-medium rounded-full transition duration-300 ${
+                                page === index + 1
+                                    ? 'bg-purple-500 text-gray-900 dark:bg-purple-500 dark:text-gray-900 shadow-lg'
+                                    : 'bg-gray-800 text-gray-300 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-700 dark:hover:bg-gray-600'
                             }`}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );
