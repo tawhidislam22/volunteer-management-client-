@@ -132,7 +132,7 @@ const Navbar = () => {
                                     className={({ isActive }) =>
                                         `btn mr-3 mb-3 ${
                                             isActive
-                                                ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                                                 : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                                         }`
                                     }
@@ -144,7 +144,7 @@ const Navbar = () => {
                                     className={({ isActive }) =>
                                         `btn mr-3 ${
                                             isActive
-                                                ? "bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                                                 : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                                         }`
                                     }
