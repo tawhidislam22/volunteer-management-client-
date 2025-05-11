@@ -15,7 +15,7 @@ const AllVolunteerNeedPosts = () => {
     const [isGridView, setIsGridView] = useState(true); 
 
     useEffect(() => {
-        axios.get(`https://volunteer-management-server-nu.vercel.app/volunteers?search=${search}&page=${page}&limit=6`)
+        axios.get(`https://volunteer-management-server-nu.vercel.app/volunteers?search=${search}&page=${page}&limit=12`)
             .then(res => {
                 setLoading(false);
                 setVolunteerPosts(res.data.posts);
@@ -48,7 +48,7 @@ const AllVolunteerNeedPosts = () => {
                 <title>All Posts | VolunSphere</title>
             </Helmet>
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-extrabold text-center text-purple-400 mb-10">
+                <h1 className="text-4xl font-extrabold text-center text-blue-500 mb-10">
                     All Volunteer Needs
                 </h1>
                 <div className="flex justify-between items-center mb-10">
@@ -57,22 +57,22 @@ const AllVolunteerNeedPosts = () => {
                             <input
                                 type="text"
                                 placeholder="Search by title"
-                                className="border border-gray-700 outline-none pl-12 py-2 rounded-full w-full bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 shadow-sm focus:ring focus:ring-purple-500"
+                                className="border border-gray-700 outline-none pl-12 py-2 rounded-full w-full bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 shadow-sm focus:ring focus:ring-blue-500"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
-                            <FaSearch className="absolute top-3 left-4 text-purple-500 dark:text-purple-400" />
+                            <FaSearch className="absolute top-3 left-4 text-blue-500 dark:text-purple-400" />
                         </div>
                         <button
                             onClick={() => setIsGridView(!isGridView)}
-                            className="ml-4 px-4 py-2 bg-purple-500 text-white rounded-full shadow hover:bg-purple-600 transition duration-300"
+                            className="w-1/2 px-4 py-2 bg-gradient-to-bl to-blue-500  from-purple-500 text-white rounded-full shadow hover:bg-purple-600 transition duration-300"
                         >
                             {isGridView ? 'Switch to Table View' : 'Switch to Grid View'}
                         </button>
                     </div>
                 </div>
                 {isGridView ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                         {volunteerPosts.map((post) => (
                             <VolunteerNeedsNow key={post._id} post={post} />
                         ))}
@@ -109,8 +109,8 @@ const AllVolunteerNeedPosts = () => {
                             key={index}
                             onClick={() => setPage(index + 1)}
                             className={`px-4 py-2 text-lg font-medium rounded-full transition duration-300 ${page === index + 1
-                                    ? 'bg-purple-500 text-gray-900 dark:bg-purple-500 dark:text-gray-900 shadow-lg'
-                                    : 'bg-gray-800 text-gray-300 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-700 dark:hover:bg-gray-600'
+                                    ? 'bg-gradient-to-bl to-blue-500  from-purple-500 dark:bg-purple-500 dark:text-gray-900 shadow-lg'
+                                    : 'bg-slate-200 text-gray-800 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-700 hover:text-slate-100 dark:hover:bg-gray-600'
                                 }`}
                         >
                             {index + 1}
