@@ -17,11 +17,11 @@ const useAxiosSecure = () => {
         if(error.status===401 || error.status===403){
             signout()
             .then(()=>{
-                console.log('logout user')
+                //console.log('logout user')
                 navigate('/signin')
             })
             .catch(err=>{
-                console.log(err)
+                //console.log(err)
             })
         }
         return Promise.reject(error)

@@ -12,7 +12,7 @@ const AllVolunteerNeedPosts = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [isGridView, setIsGridView] = useState(true); // State to toggle layout
+    const [isGridView, setIsGridView] = useState(true); 
 
     useEffect(() => {
         axios.get(`https://volunteer-management-server-nu.vercel.app/volunteers?search=${search}&page=${page}&limit=6`)

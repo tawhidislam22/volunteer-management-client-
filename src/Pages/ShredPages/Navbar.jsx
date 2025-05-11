@@ -15,7 +15,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                     `btn mr-3 ${
                         isActive
-                            ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                            ? " bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                             : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                     }`
                 }
@@ -27,7 +27,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                     `btn mr-3 ${
                         isActive
-                            ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                            ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                             : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                     }`
                 }
@@ -40,7 +40,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         `btn mr-3 ${
                             isActive
-                                ? "bg-gradient-to-tr from-blue-500 to-red-400 text-white"
+                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                                 : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                         }`
                     }
@@ -64,7 +64,9 @@ const Navbar = () => {
                 });
                 navigate('/');
             })
-            .catch((err) => console.log(err.message));
+            .catch((err) => {
+                //console.log(err.message)
+            });
     };
 
     return (
@@ -162,13 +164,13 @@ const Navbar = () => {
                 ) : (
                     <>
                         <NavLink
-                            className="btn mr-3 bg-gradient-to-tr from-indigo-500 to-purple-400 text-white"
+                            className="btn mr-3 bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                             to='/login'
                         >
                             Log In
                         </NavLink>
                         <NavLink
-                            className="btn mr-3 bg-gradient-to-tr from-green-500 to-yellow-400 text-white"
+                            className="btn mr-3 bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
                             to='/register'
                         >
                             Register

@@ -33,7 +33,7 @@ const Login = () => {
                 navigate(from)
             })
             .catch(err => {
-                console.log(err.message)
+                //console.log(err.message)
             })
 
 
@@ -71,7 +71,7 @@ const Login = () => {
 
                 })
                 .catch(error => {
-                    console.log(error.message)
+                    //console.log(error.message)
                 })
         }
     }

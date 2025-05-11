@@ -48,7 +48,7 @@ const AddVolunteerPost = () => {
                 }
             })
             .catch((err) => {
-                console.log(err.message);
+                //console.log(err.message);
             });
     };
 
@@ -169,7 +169,7 @@ const AddVolunteerPost = () => {
                             <input
                                 name="organizerName"
                                 type="text"
-                                value={user?.userName || ""}
+                                value={user?.displayName || ""}
                                 placeholder="Organizer Name"
                                 className="input input-bordered dark:bg-gray-700 dark:border-gray-600 w-full"
                                 required

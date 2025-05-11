@@ -19,7 +19,7 @@ const Home = () => {
                 setAllPosts(res.data.posts);
             })
             .catch((err) => {
-                console.log(err.message);
+                //console.log(err.message);
             });
     }, []);
 

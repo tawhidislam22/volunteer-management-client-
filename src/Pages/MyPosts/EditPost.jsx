@@ -21,7 +21,9 @@ const EditPost = () => {
                 setPostDetails(res.data[0]);
                 setStartDate(new Date(res.data[0]?.deadline));
             })
-            .catch(err => console.log(err.message));
+            .catch(err => {
+                //console.log(err.message)
+            });
     }, [id]);
 
     const handleFormSubmit = async (e) => {
@@ -53,7 +55,9 @@ const EditPost = () => {
                     navigate(-1);
                 }
             })
-            .catch(err => console.log(err.message));
+            .catch(err => {
+                //console.log(err.message)
+            });
     };
 
     return (

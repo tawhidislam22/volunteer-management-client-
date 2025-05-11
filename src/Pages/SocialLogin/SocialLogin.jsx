@@ -22,7 +22,7 @@ const SocialLogin = () => {
                 navigate(from)
             })
             .catch(err => {
-                console.log(err.message)
+                //console.log(err.message)
             })
     }
     const handleSignInGithub = () => {
@@ -37,7 +37,10 @@ const SocialLogin = () => {
                 });
                 navigate(from)
             })
-            .then(err => console.log(err.message))
+            .then(err => {
+                //console.log(err.message)
+            }
+                )
     }
     return (
         <div className="flex flex-col gap-4 pb-4">
