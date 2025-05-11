@@ -48,7 +48,7 @@ const AllVolunteerNeedPosts = () => {
                 <title>All Posts | VolunSphere</title>
             </Helmet>
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-extrabold text-center text-blue-500 mb-10">
+                <h1 className="text-4xl font-extrabold text-center text-[#544efcba] mb-10">
                     All Volunteer Needs
                 </h1>
                 <div className="flex justify-between items-center mb-10">
