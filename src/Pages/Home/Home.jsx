@@ -13,7 +13,7 @@ const Home = () => {
 
     useEffect(() => {
         axios
-            .get("https://volunteer-management-server-nu.vercel.app/volunteers?limit=6")
+            .get("https://volunteer-management-server-nu.vercel.app/volunteers?limit=8")
             .then((res) => {
                 setLoading(false);
                 setAllPosts(res.data.posts);
@@ -62,7 +62,7 @@ const Home = () => {
                 </p>
 
                 {/* Posts Grid */}
-                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto items-stretch">
                     {allPosts?.map((post) => (
                         <VolunteerNeedsNow key={post._id} post={post} />
                     ))}

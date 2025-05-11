@@ -72,7 +72,7 @@ const AllVolunteerNeedPosts = () => {
                     </div>
                 </div>
                 {isGridView ? (
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+                    <div className="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 items-stretch">
                         {volunteerPosts.map((post) => (
                             <VolunteerNeedsNow key={post._id} post={post} />
                         ))}
