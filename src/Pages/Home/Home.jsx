@@ -46,8 +46,8 @@ const Home = () => {
             </Helmet>
 
             {/* Banner Section */}
-            <div className="bg-banner-Image bg-cover bg-center w-full">
-                <div className="bg-black bg-opacity-75">
+            <div className="bg-banner-Image bg-cover bg-center  w-full">
+                <div className="bg-black bg-opacity-75 ">
                     <Banner />
                 </div>
             </div>
@@ -111,7 +111,7 @@ const Home = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
                             <div className="text-5xl text-[#544efcba] mb-4">1</div>
-                            <h3 className="text-xl font-semibold mb-2">Sign Up</h3>
+                            <Link  className="text-xl font-semibold mb-2">Sign Up</Link>
                             <p className="text-gray-700 dark:text-gray-300">
                                 Create an account to get started as a volunteer or an organizer.
                             </p>

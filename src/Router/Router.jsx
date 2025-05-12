@@ -15,6 +15,7 @@ import MyPosts from "../Pages/MyPosts/MyPosts";
 import EditPost from "../Pages/MyPosts/EditPost";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 
  const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
         {
           path:'/myRequests',
           element:<PrivateRoute><MyRequests></MyRequests></PrivateRoute>
+        },
+        {
+          path:'/myProfile',
+          element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
         }
         
       ]

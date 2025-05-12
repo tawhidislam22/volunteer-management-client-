@@ -8,7 +8,11 @@ import { Tooltip } from 'react-tooltip';
 const Navbar = () => {
     const { signOutUser, user, theme, toggleTheme } = useAuth();
     const navigate = useNavigate();
-
+        
+                            
+                            
+                                
+                        
     const links = (
         <>
             <NavLink
@@ -36,19 +40,58 @@ const Navbar = () => {
                 <li>All Volunteer Need Posts</li>
             </NavLink>
             {user ? (
-                <NavLink
-                    className={({ isActive }) =>
-                        `btn mr-3 ${
-                            isActive
-                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
-                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                        }`
-                    }
-                    to='/addVolunteerPost'
-                >
-                    <li>Add Volunteer Post</li>
-                </NavLink>
-            ) : null}
+    <>
+        <NavLink
+            className={({ isActive }) =>
+                `btn mr-3 ${
+                    isActive
+                        ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
+                        : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                }`
+            }
+            to='/addVolunteerPost'
+        >
+            <li>Add Volunteer Post</li>
+        </NavLink>
+        <NavLink
+            className={({ isActive }) =>
+                `btn mr-3 mb-3 ${
+                    isActive
+                        ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
+                        : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                }`
+            }
+            to='/myPosts'
+        >
+            <li>My Posts</li>
+        </NavLink>
+        <NavLink
+            className={({ isActive }) =>
+                `btn mr-3 ${
+                    isActive
+                        ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
+                        : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                }`
+            }
+            to='/myRequests'
+        >
+            <li>My Requests</li>
+        </NavLink>
+        <NavLink
+            className={({ isActive }) =>
+                `btn mr-3 ${
+                    isActive
+                        ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
+                        : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                }`
+            }
+            to='/myProfile'
+        >
+            <li>My Profile</li>
+        </NavLink>
+    </>
+) : null}
+    
         </>
     );
 
@@ -111,8 +154,7 @@ const Navbar = () => {
             <div className="navbar-end flex items-center">
                 {user ? (
                     <>
-                        <div className="dropdown dropdown-end mr-3">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img
                                         alt="User avatar"
@@ -124,36 +166,6 @@ const Navbar = () => {
                                     <Tooltip id="my-tooltip" />
                                 </div>
                             </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 dark:bg-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                            >
-                                <NavLink
-                                    className={({ isActive }) =>
-                                        `btn mr-3 mb-3 ${
-                                            isActive
-                                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
-                                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                                        }`
-                                    }
-                                    to='/myPosts'
-                                >
-                                    <li>My Posts</li>
-                                </NavLink>
-                                <NavLink
-                                    className={({ isActive }) =>
-                                        `btn mr-3 ${
-                                            isActive
-                                                ? "bg-gradient-to-bl to-blue-500  from-purple-500 text-white"
-                                                : "hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                                        }`
-                                    }
-                                    to='/myRequests'
-                                >
-                                    <li>My Requests</li>
-                                </NavLink>
-                            </ul>
-                        </div>
                         <button
                             onClick={handleSignout}
                             className="btn btn-sm btn-outline dark:bg-gray-700 dark:text-base-100"
